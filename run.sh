@@ -39,7 +39,8 @@ if [ -z "$JAVA_HOME" ] || ! "$JAVA_HOME/bin/javac" -version 2>&1 | grep -q " 17"
     fi
 fi
 
-# Free up port 8080 if held by background process
+# Free up port 8081/8080 if held by background process
+fuser -k 8081/tcp 2>/dev/null || true
 fuser -k 8080/tcp 2>/dev/null || true
 
 # Set Supabase database password
@@ -50,7 +51,7 @@ echo " Starting College Room Allocation System"
 echo " JAVA_HOME    : $JAVA_HOME"
 echo " Java Version : $(javac -version 2>&1)"
 echo " Database     : Supabase PostgreSQL"
-echo " Port         : 8080"
+echo " Port         : 8081"
 echo "=================================================="
 
 # Run Spring Boot
