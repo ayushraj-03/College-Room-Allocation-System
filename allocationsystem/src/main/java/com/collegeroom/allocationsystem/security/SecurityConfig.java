@@ -23,10 +23,15 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/login", "/css/**", "/js/**").permitAll()
-                .requestMatchers("/student/**").hasRole("STUDENT")
-                .requestMatchers("/hod/**").hasRole("HOD")
+                .requestMatchers("/student/**").hasAnyRole("STUDENT", "ADMIN")
+                .requestMatchers("/hod/**").hasAnyRole("HOD", "ADMIN")
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
+            )
+            .exceptionHandling(ex -> ex
+                .accessDeniedHandler((request, response, accessDeniedException) -> {
+                    response.sendRedirect("/login?error=access_denied");
+                })
             )
             .formLogin(form -> form
                 .loginPage("/login")
