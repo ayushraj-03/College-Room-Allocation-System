@@ -5,264 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Campus Schedule | St. Xavier's College (Autonomous), Mumbai</title>
     <link rel="icon" type="image/png" th:href="@{/images/xavier-logo.png}">
-    <!-- Google Fonts Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --primary: #6366f1;
-            --primary-hover: #4f46e5;
-            --success: #10b981;
-            --border: #334155;
-            --info: #06b6d4;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            background: var(--bg-color);
-            color: var(--text-primary);
-            min-height: 100vh;
-        }
-
-        /* Navbar style */
-        .navbar {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
-            padding: 16px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .navbar-brand {
-            font-weight: 700;
-            font-size: 1.25rem;
-            color: var(--text-primary);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .navbar-brand .logo-dot {
-            width: 10px;
-            height: 10px;
-            background: var(--primary);
-            border-radius: 50%;
-            display: inline-block;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .nav-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.2s ease;
-        }
-
-        .nav-link:hover {
-            color: var(--text-primary);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 30px;
-        }
-
-        .header {
-            margin-bottom: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .header h1 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin: 0;
-            background: linear-gradient(135deg, #fff 0%, #cbd5e1 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .header p {
-            color: var(--text-secondary);
-            margin: 5px 0 0 0;
-            font-size: 0.95rem;
-        }
-
-        /* Filter panel style */
-        .filter-panel {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 30px;
-        }
-
-        .filter-form {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) auto;
-            gap: 20px;
-            align-items: flex-end;
-        }
-
-        @media (max-width: 768px) {
-            .filter-form {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .form-group {
-            margin: 0;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        input, select {
-            width: 100%;
-            padding: 12px;
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            color: var(--text-primary);
-            box-sizing: border-box;
-            font-family: inherit;
-            font-size: 0.95rem;
-            transition: border-color 0.2s ease;
-        }
-
-        input:focus, select:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        .button-group {
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn {
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            border: none;
-            transition: all 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            text-decoration: none;
-            white-space: nowrap;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-hover);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border);
-            color: var(--text-primary);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        /* Schedule Grid/Table Card */
-        .section-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 30px;
-        }
-
-        .table-responsive {
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
-        }
-
-        th {
-            color: var(--text-secondary);
-            font-weight: 600;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            padding: 16px 20px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        td {
-            padding: 18px 20px;
-            border-bottom: 1px solid var(--border);
-            font-size: 0.95rem;
-            color: var(--text-primary);
-        }
-
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        tr:hover td {
-            background: rgba(255, 255, 255, 0.02);
-        }
-
-        .badge-approved {
-            background: rgba(16, 185, 129, 0.1);
-            color: var(--success);
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            display: inline-block;
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 50px 0;
-            color: var(--text-secondary);
-        }
-
-        .empty-icon {
-            font-size: 3rem;
-            margin-bottom: 16px;
-        }
-    </style>
     <link rel="stylesheet" th:href="@{/css/xavier-theme.css}">
 </head>
 <body>
@@ -294,17 +36,13 @@
         <div class="xavier-switch-menu">
             <div class="role-switch-dropdown">
                 <button type="button" class="btn-switch-portal">
-                    <span style="font-size: 0.9rem;">⇄</span>
-                    <span>Switch Portal</span>
-                    <span class="chevron-icon">▼</span>
+                    <span>⇄ Switch Portal</span>
+                    <span class="chevron-icon">▾</span>
                 </button>
                 <div class="role-dropdown-content">
-                    <div class="role-dropdown-header">
-                        <span>St. Xavier's Portals</span>
-                        <span class="security-badge">🔒 Password Required</span>
-                    </div>
+                    <div class="role-dropdown-header">St. Xavier's Portals</div>
                     <a th:href="@{/switch-role(role='STUDENT')}" class="role-dropdown-item">
-                        <div class="item-icon">🎓</div>
+                        <div class="item-icon" style="background: #fdf4e8;">🎓</div>
                         <div class="item-text">
                             <span class="item-title">Student Portal</span>
                             <span class="item-email">student@test.com</span>
@@ -312,7 +50,7 @@
                         <span class="item-arrow">›</span>
                     </a>
                     <a th:href="@{/switch-role(role='HOD')}" class="role-dropdown-item">
-                        <div class="item-icon">👨‍🏫</div>
+                        <div class="item-icon" style="background: #fbf0ea;">📖</div>
                         <div class="item-text">
                             <span class="item-title">Faculty / HOD Portal</span>
                             <span class="item-email">hod@test.com</span>
@@ -320,16 +58,13 @@
                         <span class="item-arrow">›</span>
                     </a>
                     <a th:href="@{/switch-role(role='ADMIN')}" class="role-dropdown-item">
-                        <div class="item-icon">🛡️</div>
+                        <div class="item-icon" style="background: #eef2ff;">🏛️</div>
                         <div class="item-text">
                             <span class="item-title">Central Admin Console</span>
                             <span class="item-email">admin@test.com</span>
                         </div>
                         <span class="item-arrow">›</span>
                     </a>
-                    <div class="role-dropdown-footer">
-                        <span>🔑 Pre-fills email; requires password verification</span>
-                    </div>
                 </div>
             </div>
 
@@ -340,24 +75,25 @@
     </div>
 </header>
 
-<div class="container">
-    <div class="header">
+<main class="xavier-container">
+    <!-- Page Hero -->
+    <div class="xavier-page-hero">
         <div>
-            <h1>Approved Room Schedule</h1>
-            <p>View all approved room and hall bookings. Use filters to query by room, date, or department.</p>
+            <h2 class="xavier-page-title">Approved Room & Venue Schedule</h2>
+            <p class="xavier-page-desc">Official schedule of approved venue reservations across campus. Filter by room, date, or department.</p>
         </div>
         <div>
-            <a href="/dashboard" class="btn btn-secondary">← Back to Dashboard</a>
+            <a href="/dashboard" class="btn-xavier-outline">← Back to Dashboard</a>
         </div>
     </div>
 
     <!-- Filter Panel -->
-    <div class="filter-panel">
-        <form action="/schedule" method="get" class="filter-form">
-            <div class="form-group">
-                <label for="room">Filter by Room</label>
-                <select id="room" name="roomId">
-                    <option value="">All Rooms</option>
+    <div class="xavier-card" style="margin-bottom: 24px;">
+        <form action="/schedule" method="get" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) auto; gap: 16px; align-items: flex-end;">
+            <div class="form-group" style="margin: 0;">
+                <label class="form-label" for="room">Filter by Room / Hall</label>
+                <select id="room" name="roomId" class="form-select">
+                    <option value="">All Venues</option>
                     <option th:each="room : ${rooms}"
                             th:value="${room.id}"
                             th:text="${room.name + ' (' + room.building + ')'}"
@@ -366,15 +102,15 @@
                 </select>
             </div>
 
-            <div class="form-group">
-                <label for="date">Filter by Date</label>
-                <input type="date" id="date" name="date" th:value="${selectedDate}">
+            <div class="form-group" style="margin: 0;">
+                <label class="form-label" for="date">Filter by Date</label>
+                <input type="date" id="date" name="date" class="form-control" th:value="${selectedDate}">
             </div>
 
-            <div class="form-group">
-                <label for="department">Filter by Dept</label>
-                <select id="department" name="department">
-                    <option value="">All Departments</option>
+            <div class="form-group" style="margin: 0;">
+                <label class="form-label" for="department">Filter by Department</label>
+                <select id="department" name="department" class="form-select">
+                    <option value="">All Academic Departments</option>
                     <option th:each="dept : ${departments}"
                             th:value="${dept}"
                             th:text="${dept}"
@@ -383,51 +119,78 @@
                 </select>
             </div>
 
-            <div class="button-group">
-                <button type="submit" class="btn btn-primary">Apply Filters</button>
-                <a href="/schedule" class="btn btn-secondary">Reset</a>
+            <div style="display: flex; gap: 10px;">
+                <button type="submit" class="btn-xavier-primary">Apply Filters</button>
+                <a href="/schedule" class="btn-xavier-outline">Reset</a>
             </div>
         </form>
     </div>
 
-    <!-- Schedule Table -->
-    <div class="section-card">
+    <!-- Schedule Table Card -->
+    <div class="xavier-card">
+        <div class="xavier-card-header">
+            <h3 class="xavier-card-title">Confirmed Campus Allocations</h3>
+            <span class="status-pill status-approved" th:text="${bookings != null ? bookings.size() : 0} + ' APPROVED'">0 APPROVED</span>
+        </div>
+
         <div class="table-responsive">
-            <div th:if="${#lists.isEmpty(bookings)}" class="empty-state">
-                <div class="empty-icon">📅</div>
-                <p>No approved bookings found matching the filters.</p>
+            <div th:if="${bookings == null or #lists.isEmpty(bookings)}" class="empty-state">
+                <div style="font-size: 2.5rem; margin-bottom: 12px;">📅</div>
+                <p>No approved reservations match the selected filter criteria.</p>
             </div>
-            <table th:unless="${#lists.isEmpty(bookings)}">
+
+            <table th:if="${bookings != null and !#lists.isEmpty(bookings)}" class="xavier-table">
                 <thead>
                 <tr>
                     <th>Date</th>
                     <th>Time Slot</th>
-                    <th>Room</th>
+                    <th>Room / Venue</th>
                     <th>Building</th>
                     <th>Reserved By</th>
                     <th>Department</th>
                     <th>Purpose / Event</th>
-                    <th>Status</th>
+                    <th style="text-align: right;">Authorization</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="booking : ${bookings}">
-                    <td th:text="${booking.date}" style="font-weight: 600;">Date</td>
-                    <td th:text="${booking.startTime + ' - ' + booking.endTime}">Time</td>
-                    <td th:text="${booking.room.name}" style="color: var(--info); font-weight: 500;">Room</td>
-                    <td th:text="${booking.room.building}">Building</td>
-                    <td th:text="${booking.requestedBy.name}">User Name</td>
-                    <td th:text="${booking.requestedBy.department}">Department</td>
-                    <td th:text="${booking.purpose}">Purpose</td>
+                    <td style="font-weight: 700;" th:text="${booking.date}">Date</td>
+                    <td style="font-size: 0.84rem;" th:text="${booking.startTime + ' - ' + booking.endTime}">Time</td>
                     <td>
-                        <span class="badge-approved">APPROVED</span>
+                        <span style="font-weight: 700; color: var(--xavier-maroon);" th:text="${booking.room.name}">Room</span>
+                    </td>
+                    <td th:text="${booking.room.building}">Building</td>
+                    <td style="font-weight: 600;" th:text="${booking.requestedBy.name}">User Name</td>
+                    <td th:text="${booking.requestedBy.department}">Department</td>
+                    <td style="max-width: 220px; font-size: 0.84rem;" th:text="${booking.purpose}">Purpose</td>
+                    <td style="text-align: right;">
+                        <span class="status-pill status-approved">KEY RELEASED</span>
                     </td>
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
-</div>
+</main>
+
+<!-- Footer -->
+<footer class="xavier-footer">
+    <div class="xavier-footer-inner">
+        <div class="xavier-footer-top">
+            <div class="xavier-footer-brand">
+                <h4>ST. XAVIER'S COLLEGE (AUTONOMOUS)</h4>
+                <p>5, Mahapalika Marg, Mumbai, Maharashtra 400 001</p>
+            </div>
+            <div class="xavier-footer-meta">
+                <div>Affiliated with University of Mumbai</div>
+                <div>NAAC A+ Accredited (Cycle 4)</div>
+            </div>
+        </div>
+        <div class="xavier-footer-bottom">
+            <div>© 2026 St. Xavier's College (Autonomous), Mumbai. Campus Space Allocation System.</div>
+        </div>
+    </div>
+</footer>
 
 </body>
 </html>

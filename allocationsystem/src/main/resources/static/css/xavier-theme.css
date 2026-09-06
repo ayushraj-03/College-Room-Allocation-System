@@ -176,33 +176,36 @@ body {
 }
 
 .btn-switch-portal {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(212, 175, 55, 0.45);
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.35);
     color: #ffffff;
-    padding: 7px 14px;
-    font-size: 0.82rem;
+    padding: 6px 14px;
+    font-size: 0.8rem;
     font-weight: 600;
-    border-radius: 6px;
+    border-radius: 20px;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 7px;
     transition: all 0.2s ease;
     letter-spacing: 0.02em;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
 .btn-switch-portal:hover,
 .role-switch-dropdown:hover .btn-switch-portal {
-    background: rgba(212, 175, 55, 0.22);
-    border-color: var(--xavier-gold);
+    background: rgba(255, 255, 255, 0.24);
+    border-color: #ffffff;
     color: #ffffff;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-1px);
 }
 
 .btn-switch-portal .chevron-icon {
-    font-size: 0.62rem;
+    font-size: 0.55rem;
     transition: transform 0.2s ease;
-    opacity: 0.85;
+    opacity: 0.8;
 }
 
 .role-switch-dropdown:hover .chevron-icon {
@@ -216,10 +219,10 @@ body {
     top: 100%;
     margin-top: 8px;
     background-color: #ffffff;
-    min-width: 290px;
+    min-width: 270px;
     box-shadow: 0 14px 36px rgba(18, 10, 6, 0.22), 0 2px 8px rgba(0, 0, 0, 0.08);
     border: 1px solid #e0d7c7;
-    border-top: 3px solid var(--xavier-gold);
+    border-top: 3px solid var(--xavier-maroon);
     border-radius: 10px;
     z-index: 1050;
     padding: 8px;
@@ -238,32 +241,14 @@ body {
 }
 
 .role-dropdown-header {
-    padding: 8px 10px 10px;
+    padding: 8px 10px 8px;
     font-size: 0.7rem;
     font-weight: 700;
     text-transform: uppercase;
     color: var(--xavier-maroon);
     letter-spacing: 0.06em;
     border-bottom: 1px solid #f2ece1;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     margin-bottom: 6px;
-}
-
-.role-dropdown-header .security-badge {
-    font-size: 0.65rem;
-    font-weight: 600;
-    background: #fdf2f2;
-    color: #b91c1c;
-    padding: 2px 6px;
-    border-radius: 4px;
-    border: 1px solid #fee2e2;
-    letter-spacing: normal;
-    text-transform: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 3px;
 }
 
 .role-dropdown-item {
@@ -291,7 +276,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     flex-shrink: 0;
 }
 
@@ -329,17 +314,6 @@ body {
 .role-dropdown-item:hover .item-arrow {
     color: var(--xavier-maroon);
     transform: translateX(3px);
-}
-
-.role-dropdown-footer {
-    padding: 8px 10px 4px;
-    border-top: 1px solid #f2ece1;
-    margin-top: 4px;
-    font-size: 0.68rem;
-    color: #8c827a;
-    display: flex;
-    align-items: center;
-    gap: 4px;
 }
 
 .role-switch-dropdown:hover .role-dropdown-content,

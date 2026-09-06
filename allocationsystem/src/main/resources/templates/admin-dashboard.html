@@ -88,17 +88,13 @@
         <div class="xavier-switch-menu">
             <div class="role-switch-dropdown">
                 <button type="button" class="btn-switch-portal">
-                    <span style="font-size: 0.9rem;">⇄</span>
-                    <span>Switch Portal</span>
-                    <span class="chevron-icon">▼</span>
+                    <span>⇄ Switch Portal</span>
+                    <span class="chevron-icon">▾</span>
                 </button>
                 <div class="role-dropdown-content">
-                    <div class="role-dropdown-header">
-                        <span>St. Xavier's Portals</span>
-                        <span class="security-badge">🔒 Password Required</span>
-                    </div>
+                    <div class="role-dropdown-header">St. Xavier's Portals</div>
                     <a th:href="@{/switch-role(role='STUDENT')}" class="role-dropdown-item">
-                        <div class="item-icon">🎓</div>
+                        <div class="item-icon" style="background: #fdf4e8;">🎓</div>
                         <div class="item-text">
                             <span class="item-title">Student Portal</span>
                             <span class="item-email">student@test.com</span>
@@ -106,7 +102,7 @@
                         <span class="item-arrow">›</span>
                     </a>
                     <a th:href="@{/switch-role(role='HOD')}" class="role-dropdown-item">
-                        <div class="item-icon">👨‍🏫</div>
+                        <div class="item-icon" style="background: #fbf0ea;">📖</div>
                         <div class="item-text">
                             <span class="item-title">Faculty / HOD Portal</span>
                             <span class="item-email">hod@test.com</span>
@@ -114,16 +110,13 @@
                         <span class="item-arrow">›</span>
                     </a>
                     <a th:href="@{/switch-role(role='ADMIN')}" class="role-dropdown-item" style="background-color: #fcf8f2;">
-                        <div class="item-icon">🛡️</div>
+                        <div class="item-icon" style="background: #eef2ff;">🏛️</div>
                         <div class="item-text">
                             <span class="item-title" style="color: var(--xavier-maroon);">Central Admin Console</span>
                             <span class="item-email">admin@test.com (Current)</span>
                         </div>
                         <span class="item-arrow" style="color: var(--xavier-maroon);">✓</span>
                     </a>
-                    <div class="role-dropdown-footer">
-                        <span>🔑 Pre-fills email; requires password verification</span>
-                    </div>
                 </div>
             </div>
 
