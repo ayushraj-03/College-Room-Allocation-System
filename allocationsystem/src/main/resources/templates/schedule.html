@@ -294,23 +294,42 @@
         <div class="xavier-switch-menu">
             <div class="role-switch-dropdown">
                 <button type="button" class="btn-switch-portal">
+                    <span style="font-size: 0.9rem;">⇄</span>
                     <span>Switch Portal</span>
-                    <span style="font-size: 0.65rem;">▼</span>
+                    <span class="chevron-icon">▼</span>
                 </button>
                 <div class="role-dropdown-content">
-                    <div class="role-dropdown-header">Switch Portal (Requires Password)</div>
+                    <div class="role-dropdown-header">
+                        <span>St. Xavier's Portals</span>
+                        <span class="security-badge">🔒 Password Required</span>
+                    </div>
                     <a th:href="@{/switch-role(role='STUDENT')}" class="role-dropdown-item">
-                        🎓 Student Portal
-                        <span class="desc">student@test.com</span>
+                        <div class="item-icon">🎓</div>
+                        <div class="item-text">
+                            <span class="item-title">Student Portal</span>
+                            <span class="item-email">student@test.com</span>
+                        </div>
+                        <span class="item-arrow">›</span>
                     </a>
                     <a th:href="@{/switch-role(role='HOD')}" class="role-dropdown-item">
-                        👨‍🏫 HOD Review Portal
-                        <span class="desc">hod@test.com</span>
+                        <div class="item-icon">👨‍🏫</div>
+                        <div class="item-text">
+                            <span class="item-title">Faculty / HOD Portal</span>
+                            <span class="item-email">hod@test.com</span>
+                        </div>
+                        <span class="item-arrow">›</span>
                     </a>
                     <a th:href="@{/switch-role(role='ADMIN')}" class="role-dropdown-item">
-                        ⚙️ Central Admin Console
-                        <span class="desc">admin@test.com</span>
+                        <div class="item-icon">🛡️</div>
+                        <div class="item-text">
+                            <span class="item-title">Central Admin Console</span>
+                            <span class="item-email">admin@test.com</span>
+                        </div>
+                        <span class="item-arrow">›</span>
                     </a>
+                    <div class="role-dropdown-footer">
+                        <span>🔑 Pre-fills email; requires password verification</span>
+                    </div>
                 </div>
             </div>
 

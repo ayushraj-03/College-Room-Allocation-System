@@ -1,6 +1,7 @@
 package com.collegeroom.allocationsystem;
 
 import com.collegeroom.allocationsystem.model.Booking;
+import com.collegeroom.allocationsystem.model.BookingStatus;
 import com.collegeroom.allocationsystem.model.Room;
 import com.collegeroom.allocationsystem.model.User;
 import com.collegeroom.allocationsystem.repository.BookingRepository;
@@ -33,7 +34,6 @@ public class StudentController {
             BookingRepository bookingRepository,
             UserRepository userRepository,
             BookingConflictService bookingConflictService) {
-
         this.roomRepository = roomRepository;
         this.bookingRepository = bookingRepository;
         this.userRepository = userRepository;
@@ -54,7 +54,22 @@ public class StudentController {
         List<Booking> myBookings =
                 bookingRepository.findByRequestedById(student.getId());
 
+        long approvedCount = myBookings.stream()
+                .filter(b -> b.getStatus() == BookingStatus.APPROVED)
+                .count();
+        long pendingCount = myBookings.stream()
+                .filter(b -> b.getStatus() == BookingStatus.PENDING || b.getStatus() == BookingStatus.HOD_APPROVED)
+                .count();
+        long rejectedCount = myBookings.stream()
+                .filter(b -> b.getStatus() == BookingStatus.REJECTED)
+                .count();
+
         model.addAttribute("myBookings", myBookings);
+        model.addAttribute("student", student);
+        model.addAttribute("totalCount", myBookings.size());
+        model.addAttribute("approvedCount", approvedCount);
+        model.addAttribute("pendingCount", pendingCount);
+        model.addAttribute("rejectedCount", rejectedCount);
 
         return "student-dashboard";
     }
