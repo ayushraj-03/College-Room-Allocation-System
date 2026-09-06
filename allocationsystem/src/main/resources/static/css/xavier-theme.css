@@ -1,0 +1,606 @@
+/* ==========================================================================
+   St. Xavier's College - Unified Campus Room Allocation Design System
+   ========================================================================== */
+
+:root {
+    --xavier-bg: #0a1124;
+    --xavier-surface: #121c35;
+    --xavier-card: #172442;
+    --xavier-card-hover: #1c2c52;
+    --xavier-border: #25365d;
+    --xavier-border-light: #334a7d;
+    
+    --xavier-gold: #d4af37;
+    --xavier-gold-hover: #e5c158;
+    --xavier-gold-muted: rgba(212, 175, 55, 0.15);
+    
+    --xavier-blue: #2563eb;
+    --xavier-blue-hover: #1d4ed8;
+    --xavier-blue-subtle: rgba(37, 99, 235, 0.12);
+
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+
+    --status-pending-bg: rgba(245, 158, 11, 0.15);
+    --status-pending-text: #fbbf24;
+    --status-pending-border: rgba(245, 158, 11, 0.3);
+
+    --status-hod-bg: rgba(6, 182, 212, 0.15);
+    --status-hod-text: #22d3ee;
+    --status-hod-border: rgba(6, 182, 212, 0.3);
+
+    --status-approved-bg: rgba(16, 185, 129, 0.15);
+    --status-approved-text: #34d399;
+    --status-approved-border: rgba(16, 185, 129, 0.3);
+
+    --status-rejected-bg: rgba(239, 68, 68, 0.15);
+    --status-rejected-text: #f87171;
+    --status-rejected-border: rgba(239, 68, 68, 0.3);
+
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.2);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.3);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.4);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+    background-color: var(--xavier-bg);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ================= Top University Header ================= */
+.xavier-header {
+    background: linear-gradient(180deg, #0e1833 0%, #0b1328 100%);
+    border-bottom: 1px solid var(--xavier-border);
+    padding: 14px 28px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow-md);
+}
+
+.xavier-header-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.xavier-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+}
+
+.xavier-crest {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, var(--xavier-card) 0%, #1c2b50 100%);
+    border: 2px solid var(--xavier-gold);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--xavier-gold);
+    font-size: 20px;
+    box-shadow: 0 0 12px rgba(212, 175, 55, 0.25);
+}
+
+.xavier-title-group h1 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.xavier-gold-badge {
+    background: var(--xavier-gold-muted);
+    color: var(--xavier-gold);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.xavier-sub-title {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+/* ================= 1-Click Role Switcher ================= */
+.xavier-role-switcher {
+    display: flex;
+    align-items: center;
+    background: rgba(18, 28, 53, 0.8);
+    border: 1px solid var(--xavier-border);
+    border-radius: 30px;
+    padding: 4px;
+    gap: 4px;
+}
+
+.role-switch-title {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 0 10px;
+    letter-spacing: 0.06em;
+}
+
+.role-chip {
+    padding: 6px 14px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    border-radius: 20px;
+    text-decoration: none;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.role-chip:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.role-chip.active {
+    background: linear-gradient(135deg, var(--xavier-gold) 0%, #b89222 100%);
+    color: #0b1328;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.35);
+}
+
+/* ================= User Badge & Actions ================= */
+.xavier-user-controls {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.user-identity-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--xavier-surface);
+    border: 1px solid var(--xavier-border);
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+}
+
+.user-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--xavier-blue);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.user-meta-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-meta-name {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.1;
+}
+
+.user-meta-role {
+    font-size: 0.7rem;
+    color: var(--xavier-gold);
+    font-weight: 500;
+}
+
+.btn-xavier-logout {
+    background: transparent;
+    border: 1px solid var(--xavier-border);
+    color: var(--text-secondary);
+    padding: 6px 14px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.btn-xavier-logout:hover {
+    background: rgba(239, 68, 68, 0.15);
+    border-color: rgba(239, 68, 68, 0.4);
+    color: #f87171;
+}
+
+/* ================= Layout & Containers ================= */
+.xavier-container {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 28px 24px;
+    flex: 1;
+}
+
+.xavier-page-hero {
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.xavier-page-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.xavier-page-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-top: 4px;
+}
+
+/* ================= Metric / Stat Cards ================= */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.stat-card {
+    background: var(--xavier-surface);
+    border: 1px solid var(--xavier-border);
+    border-radius: var(--radius-md);
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--xavier-border-light);
+}
+
+.stat-label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.stat-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.stat-value.gold { color: var(--xavier-gold); }
+.stat-value.green { color: #34d399; }
+.stat-value.amber { color: #fbbf24; }
+.stat-value.cyan { color: #22d3ee; }
+.stat-value.red { color: #f87171; }
+
+/* ================= Content Cards ================= */
+.xavier-card {
+    background: var(--xavier-surface);
+    border: 1px solid var(--xavier-border);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 24px;
+}
+
+.xavier-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--xavier-border);
+}
+
+.xavier-card-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ================= Forms & Inputs ================= */
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+}
+
+.form-control, .form-select {
+    width: 100%;
+    background: var(--xavier-card);
+    border: 1px solid var(--xavier-border);
+    color: var(--text-primary);
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    outline: none;
+    transition: all 0.2s;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--xavier-gold);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+}
+
+.form-select optgroup {
+    background: #0d152b;
+    color: var(--xavier-gold);
+    font-weight: 700;
+}
+
+.form-select option {
+    background: var(--xavier-card);
+    color: var(--text-primary);
+    font-weight: 400;
+    padding: 8px;
+}
+
+/* ================= Buttons ================= */
+.btn-xavier-primary {
+    background: linear-gradient(135deg, var(--xavier-gold) 0%, #b89222 100%);
+    color: #0b1328;
+    font-weight: 700;
+    border: none;
+    padding: 10px 20px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 6px rgba(212, 175, 55, 0.25);
+}
+
+.btn-xavier-primary:hover {
+    background: linear-gradient(135deg, var(--xavier-gold-hover) 0%, #c9a02a 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(212, 175, 55, 0.35);
+}
+
+.btn-xavier-approve {
+    background: rgba(16, 185, 129, 0.18);
+    border: 1px solid rgba(16, 185, 129, 0.4);
+    color: #34d399;
+    padding: 6px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-xavier-approve:hover {
+    background: #10b981;
+    color: #fff;
+}
+
+.btn-xavier-reject {
+    background: rgba(239, 68, 68, 0.18);
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    color: #f87171;
+    padding: 6px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-xavier-reject:hover {
+    background: #ef4444;
+    color: #fff;
+}
+
+.btn-refresh-pill {
+    background: var(--xavier-surface);
+    border: 1px solid var(--xavier-border);
+    color: var(--text-secondary);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+}
+
+.btn-refresh-pill:hover {
+    border-color: var(--xavier-gold);
+    color: var(--text-primary);
+}
+
+/* ================= Tables ================= */
+.table-responsive {
+    overflow-x: auto;
+}
+
+.xavier-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+}
+
+.xavier-table th {
+    background: var(--xavier-card);
+    color: var(--text-secondary);
+    text-align: left;
+    padding: 12px 16px;
+    font-weight: 600;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 2px solid var(--xavier-border);
+}
+
+.xavier-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--xavier-border);
+    color: var(--text-primary);
+    vertical-align: middle;
+}
+
+.xavier-table tbody tr {
+    transition: background-color 0.15s;
+}
+
+.xavier-table tbody tr:hover {
+    background-color: var(--xavier-card-hover);
+}
+
+/* ================= Status Badges ================= */
+.status-pill {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.74rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.status-pending {
+    background: var(--status-pending-bg);
+    color: var(--status-pending-text);
+    border: 1px solid var(--status-pending-border);
+}
+
+.status-hod {
+    background: var(--status-hod-bg);
+    color: var(--status-hod-text);
+    border: 1px solid var(--status-hod-border);
+}
+
+.status-approved {
+    background: var(--status-approved-bg);
+    color: var(--status-approved-text);
+    border: 1px solid var(--status-approved-border);
+}
+
+.status-rejected {
+    background: var(--status-rejected-bg);
+    color: var(--status-rejected-text);
+    border: 1px solid var(--status-rejected-border);
+}
+
+/* ================= Tab Filters ================= */
+.xavier-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.xavier-tab-btn {
+    background: var(--xavier-surface);
+    border: 1px solid var(--xavier-border);
+    color: var(--text-secondary);
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.xavier-tab-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--xavier-border-light);
+}
+
+.xavier-tab-btn.active {
+    background: var(--xavier-gold-muted);
+    border-color: var(--xavier-gold);
+    color: var(--xavier-gold);
+}
+
+/* ================= Alerts ================= */
+.xavier-alert {
+    padding: 12px 18px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 20px;
+    font-size: 0.88rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.xavier-alert-success {
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: #34d399;
+}
+
+.xavier-alert-danger {
+    background: rgba(239, 68, 68, 0.12);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #f87171;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 48px 24px;
+    color: var(--text-muted);
+}
+
+.empty-state-icon {
+    font-size: 3rem;
+    margin-bottom: 12px;
+    opacity: 0.6;
+}

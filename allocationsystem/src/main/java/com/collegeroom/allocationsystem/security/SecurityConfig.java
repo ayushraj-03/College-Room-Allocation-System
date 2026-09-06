@@ -25,7 +25,7 @@ public class SecurityConfig {
                 .cacheControl(cache -> {})
             )
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/login", "/css/**", "/js/**").permitAll()
+                .requestMatchers("/login", "/switch-role", "/css/**", "/js/**", "/images/**").permitAll()
                 .requestMatchers("/student/**").hasAnyRole("STUDENT", "ADMIN")
                 .requestMatchers("/hod/**").hasAnyRole("HOD", "ADMIN")
                 .requestMatchers("/admin/**").hasRole("ADMIN")

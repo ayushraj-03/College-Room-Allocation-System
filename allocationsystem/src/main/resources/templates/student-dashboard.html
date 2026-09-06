@@ -6,388 +6,109 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>Student Dashboard | College Room Booking System</title>
-    <!-- Google Fonts Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Student Portal | St. Xavier's College Room Allocation</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/xavier-theme.css}">
     <style>
-        :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --primary: #8b5cf6;
-            --primary-hover: #7c3aed;
-            --success: #10b981;
-            --success-hover: #059669;
-            --danger: #ef4444;
-            --danger-hover: #dc2626;
-            --warning: #f59e0b;
-            --border: #334155;
-            --info: #06b6d4;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            background: var(--bg-color);
-            color: var(--text-primary);
-            min-height: 100vh;
-        }
-
-        /* Navbar style */
-        .navbar {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
-            padding: 16px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .navbar-brand {
-            font-weight: 700;
-            font-size: 1.25rem;
-            color: var(--text-primary);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .navbar-brand .logo-dot {
-            width: 10px;
-            height: 10px;
-            background: var(--primary);
-            border-radius: 50%;
-            display: inline-block;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .nav-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.2s ease;
-        }
-
-        .nav-link:hover {
-            color: var(--text-primary);
-        }
-
-        .btn-logout {
-            background: transparent;
-            border: 1px solid var(--border);
-            color: var(--text-primary);
-            padding: 8px 16px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            cursor: pointer;
-        }
-
-        .btn-logout:hover {
-            background: var(--danger);
-            border-color: var(--danger);
-            color: white;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 30px;
-        }
-
-        .header {
-            margin-bottom: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .header h1 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin: 0;
-            background: linear-gradient(135deg, #fff 0%, #cbd5e1 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .header p {
-            color: var(--text-secondary);
-            margin: 5px 0 0 0;
-            font-size: 0.95rem;
-        }
-
-        .btn-view-schedule {
-            background: var(--primary);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: background 0.2s ease;
-        }
-
-        .btn-view-schedule:hover {
-            background: var(--primary-hover);
-        }
-
-        /* Alert styles */
-        .alert {
-            padding: 14px 20px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            font-weight: 500;
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .alert-error {
-            background: rgba(239, 68, 68, 0.1);
-            border: 1px solid var(--danger);
-            color: #fca5a5;
-        }
-
-        .alert-success {
-            background: rgba(16, 185, 129, 0.1);
-            border: 1px solid var(--success);
-            color: #6ee7b7;
-        }
-
-        /* Two Column Layout */
         .layout-grid {
             display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 30px;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 24px;
             align-items: start;
         }
-
-        @media (max-width: 992px) {
+        @media (max-width: 960px) {
             .layout-grid {
                 grid-template-columns: 1fr;
             }
         }
-
-        /* Cards */
-        .section-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 30px;
-            margin-bottom: 30px;
-        }
-
-        .section-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-top: 0;
-            margin-bottom: 24px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .section-title::before {
-            content: '';
-            display: inline-block;
-            width: 4px;
-            height: 18px;
-            background: var(--primary);
-            border-radius: 2px;
-        }
-
-        /* Forms */
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-
-        input, select, textarea {
-            width: 100%;
-            padding: 12px;
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            color: var(--text-primary);
-            box-sizing: border-box;
-            font-family: inherit;
-            font-size: 0.95rem;
-            transition: border-color 0.2s ease;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        textarea {
-            resize: vertical;
-        }
-
-        .btn-submit {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 14px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            cursor: pointer;
-            width: 100%;
-            transition: background 0.2s ease;
-        }
-
-        .btn-submit:hover {
-            background: var(--primary-hover);
-        }
-
-        /* Tables */
-        .table-responsive {
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
-        }
-
-        th {
-            color: var(--text-secondary);
-            font-weight: 600;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            padding: 16px 20px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        td {
-            padding: 18px 20px;
-            border-bottom: 1px solid var(--border);
-            font-size: 0.95rem;
-            color: var(--text-primary);
-        }
-
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        /* Status Badges */
-        .status-badge {
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            display: inline-block;
-        }
-
-        .status-pending {
-            background: rgba(245, 158, 11, 0.1);
-            color: var(--warning);
-            border: 1px solid rgba(245, 158, 11, 0.2);
-        }
-
-        .status-hod {
-            background: rgba(6, 182, 212, 0.1);
-            color: var(--info);
-            border: 1px solid rgba(6, 182, 212, 0.2);
-        }
-
-        .status-approved {
-            background: rgba(16, 185, 129, 0.1);
-            color: var(--success);
-            border: 1px solid rgba(16, 185, 129, 0.2);
-        }
-
-        .status-rejected {
-            background: rgba(239, 68, 68, 0.1);
-            color: var(--danger);
-            border: 1px solid rgba(239, 68, 68, 0.2);
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 40px 0;
-            color: var(--text-secondary);
-        }
-
-        .empty-icon {
-            font-size: 2.5rem;
-            margin-bottom: 12px;
+        .time-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
         }
     </style>
 </head>
 <body>
 
-<nav class="navbar">
-    <a href="#" class="navbar-brand">
-        <span class="logo-dot"></span>
-        College Booking
-    </a>
-    <div class="nav-links">
-        <span class="nav-link">Role: Student</span>
-        <a href="/schedule" class="nav-link">Schedule Calendar</a>
-        <form th:action="@{/logout}" method="post" style="margin: 0; display: inline;">
-            <button type="submit" class="btn-logout" style="background: none; border: 1px solid var(--border); cursor: pointer;">Logout</button>
-        </form>
-    </div>
-</nav>
-
-<div class="container">
-    <div class="header">
-        <div>
-            <h1>Student Dashboard</h1>
-            <p>Request a room booking and track your requests in real-time.</p>
+<!-- Top St. Xavier's College Header -->
+<header class="xavier-header">
+    <div class="xavier-header-inner">
+        <div class="xavier-brand">
+            <div class="xavier-crest">🏛️</div>
+            <div class="xavier-title-group">
+                <h1>ST. XAVIER'S COLLEGE <span class="xavier-gold-badge">STUDENT PORTAL</span></h1>
+                <div class="xavier-sub-title">Campus Space & Room Allocation System</div>
+            </div>
         </div>
+
+        <!-- 1-Click Role Switcher -->
+        <div class="xavier-role-switcher">
+            <span class="role-switch-title">Switch:</span>
+            <a th:href="@{/switch-role(role='STUDENT')}" class="role-chip active">🎓 Student</a>
+            <a th:href="@{/switch-role(role='HOD')}" class="role-chip">👨‍🏫 HOD</a>
+            <a th:href="@{/switch-role(role='ADMIN')}" class="role-chip">⚙️ Admin</a>
+        </div>
+
+        <!-- User Controls -->
+        <div class="xavier-user-controls">
+            <div class="user-identity-badge">
+                <div class="user-avatar" th:text="${student != null ? #strings.substring(student.name, 0, 1) : 'S'}">S</div>
+                <div class="user-meta-text">
+                    <span class="user-meta-name" th:text="${student != null ? student.name : 'Student User'}">Student Name</span>
+                    <span class="user-meta-role" th:text="${student != null && student.department != null ? student.department : 'Undergraduate'}">Department</span>
+                </div>
+            </div>
+            <form th:action="@{/logout}" method="post" style="display:inline;">
+                <button type="submit" class="btn-xavier-logout">Log Out</button>
+            </form>
+        </div>
+    </div>
+</header>
+
+<main class="xavier-container">
+    <!-- Page Hero -->
+    <div class="xavier-page-hero">
         <div>
-            <a href="/schedule" class="btn-view-schedule">View Booking Schedule</a>
+            <h2 class="xavier-page-title">Room Reservation Portal</h2>
+            <p class="xavier-page-desc">Reserve lecture halls, science labs, and seminar rooms for academic and extracurricular activities.</p>
+        </div>
+        <div style="display: flex; gap: 10px;">
+            <a href="/schedule" class="btn-refresh-pill">
+                <span>📅</span> View Campus Schedule
+            </a>
+            <a th:href="@{/student/dashboard}" class="btn-refresh-pill">
+                <span>🔄</span> Refresh Status
+            </a>
         </div>
     </div>
 
-    <!-- Success and Error Alerts -->
-    <div th:if="${param.error}" class="alert alert-error">
-        <span th:if="${param.error[0] == 'conflict'}">⚠️ Error: A booking conflict was detected! The room is already booked for that date and time range.</span>
-        <span th:if="${param.error[0] == 'invalid_time'}">⚠️ Error: End time must be later than start time!</span>
-        <span th:if="${param.error[0] == 'past_date'}">⚠️ Error: Booking date cannot be in the past!</span>
-        <span th:if="${param.error[0] != 'conflict' and param.error[0] != 'invalid_time' and param.error[0] != 'past_date'}">⚠️ Error: An unexpected error occurred.</span>
+    <!-- Alert Notifications -->
+    <div th:if="${param.error}" class="xavier-alert xavier-alert-danger">
+        <span th:if="${param.error[0] == 'conflict'}">⚠️ Scheduling Conflict: That venue is already booked for the selected date and time range. Please choose another slot or room.</span>
+        <span th:if="${param.error[0] == 'invalid_time'}">⚠️ Invalid Time: End time must be later than start time.</span>
+        <span th:if="${param.error[0] == 'past_date'}">⚠️ Invalid Date: Bookings cannot be submitted for past dates.</span>
+        <span th:if="${param.error[0] != 'conflict' and param.error[0] != 'invalid_time' and param.error[0] != 'past_date'}">⚠️ Unable to process request. Please check inputs and try again.</span>
     </div>
 
-    <div th:if="${param.success}" class="alert alert-success">
-        <span th:if="${param.success[0] == 'created'}">✓ Your booking request has been successfully submitted and is pending review!</span>
+    <div th:if="${param.success}" class="xavier-alert xavier-alert-success">
+        <span th:if="${param.success[0] == 'created'}">✓ Your booking request has been submitted successfully! It is now pending departmental HOD review.</span>
     </div>
 
+    <!-- Main Two-Column Layout -->
     <div class="layout-grid">
         <!-- Room Request Form -->
-        <div class="section-card">
-            <h2 class="section-title">Request a Room</h2>
+        <div class="xavier-card">
+            <div class="xavier-card-header">
+                <div class="xavier-card-title">
+                    <span>📝</span> Request a Venue
+                </div>
+            </div>
+
             <form th:action="@{/student/bookings}" method="post">
                 <div class="form-group">
-                    <label for="room">Select Room / Hall</label>
-                    <select id="room" name="roomId" required>
+                    <label class="form-label" for="room">Select Room / Hall</label>
+                    <select id="room" name="roomId" class="form-select" required>
                         <option value="">-- Choose a Room / Hall --</option>
                         
                         <optgroup label="🔬 Specialized Rooms & Labs">
@@ -417,121 +138,132 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="date">Date</label>
-                    <input type="date" id="date" name="date" required>
+                    <label class="form-label" for="date">Booking Date</label>
+                    <input type="date" id="date" name="date" class="form-control" required>
+                </div>
+
+                <div class="time-row">
+                    <div class="form-group">
+                        <label class="form-label" for="startTime">Start Time</label>
+                        <select id="startTime" name="startTime" class="form-select" required onchange="validateTimeRange()">
+                            <option value="">-- Start --</option>
+                            <option value="07:00">07:00 AM</option>
+                            <option value="07:30">07:30 AM</option>
+                            <option value="08:00">08:00 AM</option>
+                            <option value="08:30">08:30 AM</option>
+                            <option value="09:00">09:00 AM</option>
+                            <option value="09:30">09:30 AM</option>
+                            <option value="10:00">10:00 AM</option>
+                            <option value="10:30">10:30 AM</option>
+                            <option value="11:00">11:00 AM</option>
+                            <option value="11:30">11:30 AM</option>
+                            <option value="12:00">12:00 PM</option>
+                            <option value="12:30">12:30 PM</option>
+                            <option value="13:00">01:00 PM</option>
+                            <option value="13:30">01:30 PM</option>
+                            <option value="14:00">02:00 PM</option>
+                            <option value="14:30">02:30 PM</option>
+                            <option value="15:00">03:00 PM</option>
+                            <option value="15:30">03:30 PM</option>
+                            <option value="16:00">04:00 PM</option>
+                            <option value="16:30">04:30 PM</option>
+                            <option value="17:00">05:00 PM</option>
+                            <option value="17:30">05:30 PM</option>
+                            <option value="18:00">06:00 PM</option>
+                            <option value="18:30">06:30 PM</option>
+                            <option value="19:00">07:00 PM</option>
+                            <option value="19:30">07:30 PM</option>
+                            <option value="20:00">08:00 PM</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="endTime">End Time</label>
+                        <select id="endTime" name="endTime" class="form-select" required onchange="validateTimeRange()">
+                            <option value="">-- End --</option>
+                            <option value="07:30">07:30 AM</option>
+                            <option value="08:00">08:00 AM</option>
+                            <option value="08:30">08:30 AM</option>
+                            <option value="09:00">09:00 AM</option>
+                            <option value="09:30">09:30 AM</option>
+                            <option value="10:00">10:00 AM</option>
+                            <option value="10:30">10:30 AM</option>
+                            <option value="11:00">11:00 AM</option>
+                            <option value="11:30">11:30 AM</option>
+                            <option value="12:00">12:00 PM</option>
+                            <option value="12:30">12:30 PM</option>
+                            <option value="13:00">01:00 PM</option>
+                            <option value="13:30">01:30 PM</option>
+                            <option value="14:00">02:00 PM</option>
+                            <option value="14:30">02:30 PM</option>
+                            <option value="15:00">03:00 PM</option>
+                            <option value="15:30">03:30 PM</option>
+                            <option value="16:00">04:00 PM</option>
+                            <option value="16:30">04:30 PM</option>
+                            <option value="17:00">05:00 PM</option>
+                            <option value="17:30">05:30 PM</option>
+                            <option value="18:00">06:00 PM</option>
+                            <option value="18:30">06:30 PM</option>
+                            <option value="19:00">07:00 PM</option>
+                            <option value="19:30">07:30 PM</option>
+                            <option value="20:00">08:00 PM</option>
+                            <option value="20:30">08:30 PM</option>
+                            <option value="21:00">09:00 PM</option>
+                        </select>
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="startTime">Start Time</label>
-                    <select id="startTime" name="startTime" required onchange="validateTimeRange()">
-                        <option value="">-- Select Start Time --</option>
-                        <option value="07:00">07:00 AM</option>
-                        <option value="07:30">07:30 AM</option>
-                        <option value="08:00">08:00 AM</option>
-                        <option value="08:30">08:30 AM</option>
-                        <option value="09:00">09:00 AM</option>
-                        <option value="09:30">09:30 AM</option>
-                        <option value="10:00">10:00 AM</option>
-                        <option value="10:30">10:30 AM</option>
-                        <option value="11:00">11:00 AM</option>
-                        <option value="11:30">11:30 AM</option>
-                        <option value="12:00">12:00 PM (Noon)</option>
-                        <option value="12:30">12:30 PM</option>
-                        <option value="13:00">01:00 PM</option>
-                        <option value="13:30">01:30 PM</option>
-                        <option value="14:00">02:00 PM</option>
-                        <option value="14:30">02:30 PM</option>
-                        <option value="15:00">03:00 PM</option>
-                        <option value="15:30">03:30 PM</option>
-                        <option value="16:00">04:00 PM</option>
-                        <option value="16:30">04:30 PM</option>
-                        <option value="17:00">05:00 PM</option>
-                        <option value="17:30">05:30 PM</option>
-                        <option value="18:00">06:00 PM</option>
-                        <option value="18:30">06:30 PM</option>
-                        <option value="19:00">07:00 PM</option>
-                        <option value="19:30">07:30 PM</option>
-                        <option value="20:00">08:00 PM</option>
-                        <option value="20:30">08:30 PM</option>
-                        <option value="21:00">09:00 PM</option>
-                    </select>
+                    <label class="form-label" for="purpose">Purpose of Reservation</label>
+                    <textarea id="purpose" name="purpose" class="form-control" rows="3" placeholder="e.g. Computer Science Club Hackathon, Guest Lecture, Study Session..." required></textarea>
                 </div>
 
-                <div class="form-group">
-                    <label for="endTime">End Time</label>
-                    <select id="endTime" name="endTime" required onchange="validateTimeRange()">
-                        <option value="">-- Select End Time --</option>
-                        <option value="07:30">07:30 AM</option>
-                        <option value="08:00">08:00 AM</option>
-                        <option value="08:30">08:30 AM</option>
-                        <option value="09:00">09:00 AM</option>
-                        <option value="09:30">09:30 AM</option>
-                        <option value="10:00">10:00 AM</option>
-                        <option value="10:30">10:30 AM</option>
-                        <option value="11:00">11:00 AM</option>
-                        <option value="11:30">11:30 AM</option>
-                        <option value="12:00">12:00 PM (Noon)</option>
-                        <option value="12:30">12:30 PM</option>
-                        <option value="13:00">01:00 PM</option>
-                        <option value="13:30">01:30 PM</option>
-                        <option value="14:00">02:00 PM</option>
-                        <option value="14:30">02:30 PM</option>
-                        <option value="15:00">03:00 PM</option>
-                        <option value="15:30">03:30 PM</option>
-                        <option value="16:00">04:00 PM</option>
-                        <option value="16:30">04:30 PM</option>
-                        <option value="17:00">05:00 PM</option>
-                        <option value="17:30">05:30 PM</option>
-                        <option value="18:00">06:00 PM</option>
-                        <option value="18:30">06:30 PM</option>
-                        <option value="19:00">07:00 PM</option>
-                        <option value="19:30">07:30 PM</option>
-                        <option value="20:00">08:00 PM</option>
-                        <option value="20:30">08:30 PM</option>
-                        <option value="21:00">09:00 PM</option>
-                        <option value="21:30">09:30 PM</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="purpose">Purpose of Booking</label>
-                    <textarea id="purpose" name="purpose" rows="4" placeholder="e.g. Club meeting, study group, workshop..." required></textarea>
-                </div>
-
-                <button type="submit" class="btn-submit">Submit Request</button>
+                <button type="submit" class="btn-xavier-primary" style="width: 100%; justify-content: center;">
+                    Submit Booking Request
+                </button>
             </form>
         </div>
 
         <!-- My Bookings List -->
-        <div class="section-card">
-            <h2 class="section-title">My Booking History</h2>
-            <div class="table-responsive">
-                <div th:if="${#lists.isEmpty(myBookings)}" class="empty-state">
-                    <div class="empty-icon">📅</div>
-                    <p>You haven't requested any room bookings yet.</p>
+        <div class="xavier-card">
+            <div class="xavier-card-header">
+                <div class="xavier-card-title">
+                    <span>🕒</span> My Booking History
                 </div>
+                <span class="status-pill status-hod" th:text="${myBookings != null ? myBookings.size() : 0} + ' TOTAL'">0 TOTAL</span>
+            </div>
 
-                <table th:unless="${#lists.isEmpty(myBookings)}">
+            <div th:if="${myBookings == null or #lists.isEmpty(myBookings)}" class="empty-state">
+                <div class="empty-state-icon">📅</div>
+                <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 6px;">No Bookings Yet</h3>
+                <p style="font-size: 0.88rem;">Use the form on the left to submit your first room reservation.</p>
+            </div>
+
+            <div th:if="${myBookings != null and !#lists.isEmpty(myBookings)}" class="table-responsive">
+                <table class="xavier-table">
                     <thead>
                     <tr>
-                        <th>Room</th>
+                        <th>Venue</th>
                         <th>Date</th>
-                        <th>Time Range</th>
+                        <th>Time</th>
                         <th>Purpose</th>
-                        <th>Status</th>
+                        <th style="text-align: right;">Status</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="booking : ${myBookings}">
-                        <td th:text="${booking.room.name}">Room Name</td>
-                        <td th:text="${booking.date}">Date</td>
-                        <td th:text="${booking.startTime + ' - ' + booking.endTime}">Time</td>
-                        <td th:text="${booking.purpose}">Purpose</td>
                         <td>
-                            <span th:if="${#strings.toString(booking.status) == 'PENDING'}" class="status-badge status-pending">Pending HOD</span>
-                            <span th:if="${#strings.toString(booking.status) == 'HOD_APPROVED'}" class="status-badge status-hod">HOD Approved</span>
-                            <span th:if="${#strings.toString(booking.status) == 'APPROVED'}" class="status-badge status-approved">Approved</span>
-                            <span th:if="${#strings.toString(booking.status) == 'REJECTED'}" class="status-badge status-rejected">Rejected</span>
+                            <div style="font-weight: 600;" th:text="${booking.room.name}">Room Name</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);" th:text="${booking.room.building}">Building</div>
+                        </td>
+                        <td style="font-weight: 600; color: var(--xavier-gold);" th:text="${booking.date}">Date</td>
+                        <td style="font-size: 0.82rem;" th:text="${booking.startTime + ' - ' + booking.endTime}">Time</td>
+                        <td style="max-width: 180px;" th:text="${booking.purpose}">Purpose</td>
+                        <td style="text-align: right;">
+                            <span th:if="${#strings.toString(booking.status) == 'PENDING'}" class="status-pill status-pending">Pending HOD</span>
+                            <span th:if="${#strings.toString(booking.status) == 'HOD_APPROVED'}" class="status-pill status-hod">HOD Approved</span>
+                            <span th:if="${#strings.toString(booking.status) == 'APPROVED'}" class="status-pill status-approved">Approved</span>
+                            <span th:if="${#strings.toString(booking.status) == 'REJECTED'}" class="status-pill status-rejected">Rejected</span>
                         </td>
                     </tr>
                     </tbody>
@@ -539,11 +271,10 @@
             </div>
         </div>
     </div>
-</div>
+</main>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        // Pre-populate date picker with tomorrow's date by default
         const dateInput = document.getElementById("date");
         if (dateInput && !dateInput.value) {
             const tomorrow = new Date();

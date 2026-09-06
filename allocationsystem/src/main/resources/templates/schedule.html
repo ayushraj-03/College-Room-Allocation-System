@@ -261,19 +261,37 @@
             font-size: 3rem;
             margin-bottom: 16px;
         }
-    </style>
+    <link rel="stylesheet" th:href="@{/css/xavier-theme.css}">
 </head>
 <body>
 
-<nav class="navbar">
-    <a href="#" class="navbar-brand">
-        <span class="logo-dot"></span>
-        College Booking
-    </a>
-    <div class="nav-links">
-        <a href="/dashboard" class="nav-link">Return to Dashboard</a>
+<!-- Top St. Xavier's College Header -->
+<header class="xavier-header">
+    <div class="xavier-header-inner">
+        <div class="xavier-brand">
+            <div class="xavier-crest">🏛️</div>
+            <div class="xavier-title-group">
+                <h1>ST. XAVIER'S COLLEGE <span class="xavier-gold-badge">SCHEDULE VIEW</span></h1>
+                <div class="xavier-sub-title">Campus Space & Room Allocation System</div>
+            </div>
+        </div>
+
+        <!-- 1-Click Role Switcher -->
+        <div class="xavier-role-switcher">
+            <span class="role-switch-title">Switch:</span>
+            <a th:href="@{/switch-role(role='STUDENT')}" class="role-chip">🎓 Student</a>
+            <a th:href="@{/switch-role(role='HOD')}" class="role-chip">👨‍🏫 HOD</a>
+            <a th:href="@{/switch-role(role='ADMIN')}" class="role-chip">⚙️ Admin</a>
+        </div>
+
+        <!-- User Controls -->
+        <div class="xavier-user-controls">
+            <form th:action="@{/logout}" method="post" style="display:inline;">
+                <button type="submit" class="btn-xavier-logout">Log Out</button>
+            </form>
+        </div>
     </div>
-</nav>
+</header>
 
 <div class="container">
     <div class="header">
