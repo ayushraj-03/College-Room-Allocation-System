@@ -1,0 +1,14 @@
+{
+  "name": "College Room Allocation System (Java 17)",
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "17",
+      "jdkDistro": "tem",
+      "installMaven": "false",
+      "installGradle": "false"
+    }
+  },
+  "containerEnv": {
+    "DB_PASSWORD": "collegeroomallocationsystem"
+  }
+}
