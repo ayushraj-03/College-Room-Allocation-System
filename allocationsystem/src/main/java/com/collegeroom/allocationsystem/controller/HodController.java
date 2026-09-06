@@ -49,13 +49,16 @@ public class HodController {
                 .orElseThrow(() -> new IllegalArgumentException("Booking not found: " + id));
 
         User hod = getCurrentHod(authentication);
-        if (!booking.getRequestedBy().getDepartment().equals(hod.getDepartment())) {
-            throw new SecurityException("Not authorized to act on this booking");
+        String studentDept = (booking.getRequestedBy() != null) ? booking.getRequestedBy().getDepartment() : null;
+        String hodDept = hod.getDepartment();
+
+        if (studentDept != null && hodDept != null && !studentDept.trim().equalsIgnoreCase(hodDept.trim())) {
+            return "redirect:/hod/dashboard?error=unauthorized";
         }
 
         booking.setStatus(BookingStatus.HOD_APPROVED);
         bookingRepository.save(booking);
-        return "redirect:/hod/dashboard";
+        return "redirect:/hod/dashboard?success=approved";
     }
 
     @PostMapping("/hod/bookings/{id}/reject")
@@ -64,12 +67,15 @@ public class HodController {
                 .orElseThrow(() -> new IllegalArgumentException("Booking not found: " + id));
 
         User hod = getCurrentHod(authentication);
-        if (!booking.getRequestedBy().getDepartment().equals(hod.getDepartment())) {
-            throw new SecurityException("Not authorized to act on this booking");
+        String studentDept = (booking.getRequestedBy() != null) ? booking.getRequestedBy().getDepartment() : null;
+        String hodDept = hod.getDepartment();
+
+        if (studentDept != null && hodDept != null && !studentDept.trim().equalsIgnoreCase(hodDept.trim())) {
+            return "redirect:/hod/dashboard?error=unauthorized";
         }
 
         booking.setStatus(BookingStatus.REJECTED);
         bookingRepository.save(booking);
-        return "redirect:/hod/dashboard";
+        return "redirect:/hod/dashboard?success=rejected";
     }
 }
