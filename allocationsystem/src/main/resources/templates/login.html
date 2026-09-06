@@ -6,179 +6,236 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>Sign In | St. Xavier's College Room Allocation</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Sign In | St. Xavier's College (Autonomous), Mumbai</title>
     <link rel="stylesheet" th:href="@{/css/xavier-theme.css}">
     <style>
-        .login-wrapper {
+        body {
+            background-color: #f7f4ee;
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
+        }
+
+        .auth-container {
+            flex: 1;
+            display: flex;
             align-items: center;
             justify-content: center;
-            padding: 24px;
-            background: radial-gradient(circle at top center, #131f3d 0%, #0a1124 70%);
+            padding: 40px 20px;
         }
-        .login-box {
+
+        .auth-card {
             width: 100%;
             max-width: 440px;
-            background: var(--xavier-surface);
-            border: 1px solid var(--xavier-border);
-            border-radius: var(--radius-lg);
-            padding: 36px 32px;
-            box-shadow: var(--shadow-lg);
-        }
-        .login-crest-header {
-            text-align: center;
-            margin-bottom: 28px;
-        }
-        .login-crest-icon {
-            width: 58px;
-            height: 58px;
-            margin: 0 auto 14px;
-            background: linear-gradient(135deg, var(--xavier-card) 0%, #1e2c4f 100%);
-            border: 2px solid var(--xavier-gold);
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 26px;
-            color: var(--xavier-gold);
-            box-shadow: 0 0 16px rgba(212, 175, 55, 0.3);
-        }
-        .login-college-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-            color: var(--text-primary);
-        }
-        .login-sub-text {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-top: 4px;
-        }
-        .quick-login-section {
-            background: var(--xavier-card);
-            border: 1px solid var(--xavier-border);
+            background: #ffffff;
+            border: 1px solid var(--border-warm);
+            border-top: 4px solid var(--xavier-maroon);
             border-radius: var(--radius-md);
-            padding: 16px;
+            padding: 36px 32px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .auth-crest-wrap {
+            text-align: center;
             margin-bottom: 24px;
         }
-        .quick-login-title {
-            font-size: 0.74rem;
+
+        .auth-crest-img {
+            width: 64px;
+            height: 72px;
+            margin: 0 auto 12px;
+            display: block;
+        }
+
+        .auth-college-title {
+            font-family: "Georgia", "Times New Roman", serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--xavier-maroon);
+            letter-spacing: 0.02em;
+            line-height: 1.2;
+        }
+
+        .auth-tagline {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-top: 4px;
             text-transform: uppercase;
             letter-spacing: 0.06em;
-            font-weight: 700;
-            color: var(--xavier-gold);
-            margin-bottom: 10px;
-            text-align: center;
+            font-weight: 600;
         }
-        .quick-login-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
+
+        .auth-portal-name {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border-subtle);
         }
-        .btn-quick-login {
+
+        .role-selector-pills {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 10px 6px;
-            background: var(--xavier-surface);
-            border: 1px solid var(--xavier-border);
+            gap: 6px;
+            margin-bottom: 20px;
+            background: #f7f4ec;
+            padding: 4px;
             border-radius: var(--radius-sm);
-            color: var(--text-primary);
-            text-decoration: none;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .role-pill-btn {
+            flex: 1;
+            padding: 7px 4px;
             font-size: 0.78rem;
             font-weight: 600;
-            transition: all 0.2s;
             text-align: center;
-        }
-        .btn-quick-login:hover {
-            border-color: var(--xavier-gold);
-            background: var(--xavier-gold-muted);
-            color: var(--xavier-gold);
-            transform: translateY(-2px);
-        }
-        .btn-quick-login span.icon {
-            font-size: 1.2rem;
-            margin-bottom: 4px;
-        }
-        .divider {
-            display: flex;
-            align-items: center;
-            text-align: center;
-            margin: 20px 0;
+            border-radius: 3px;
             color: var(--text-muted);
-            font-size: 0.72rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            transition: all 0.15s;
         }
-        .divider::before, .divider::after {
-            content: '';
-            flex: 1;
-            border-bottom: 1px solid var(--xavier-border);
+
+        .role-pill-btn.active {
+            background: #ffffff;
+            color: var(--xavier-maroon);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
-        .divider::before { margin-right: 12px; }
-        .divider::after { margin-left: 12px; }
+
+        .auth-footer {
+            text-align: center;
+            padding: 18px 24px;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-warm);
+            background: #f3ede2;
+        }
     </style>
 </head>
 <body>
 
-<div class="login-wrapper">
-    <div class="login-box">
-        <div class="login-crest-header">
-            <div class="login-crest-icon">🏛️</div>
-            <h2 class="login-college-title">ST. XAVIER'S COLLEGE</h2>
-            <p class="login-sub-text">Campus Room & Space Allocation System</p>
-        </div>
+<!-- Top Institutional Strip -->
+<div class="xavier-top-strip">
+    <div>
+        <a href="https://xaviers.edu" target="_blank">xaviers.edu</a>
+        <a href="#">NIRF</a>
+        <a href="#">IQAC</a>
+    </div>
+    <div style="font-weight: 600; letter-spacing: 0.04em;">
+        ESTD. 1869 • EMPOWERED AUTONOMOUS INSTITUTE
+    </div>
+</div>
 
-        <!-- 1-Click Presentation Demo Switcher -->
-        <div class="quick-login-section">
-            <div class="quick-login-title">⚡ 1-Click Instant Demo Login</div>
-            <div class="quick-login-grid">
-                <a th:href="@{/switch-role(role='STUDENT')}" class="btn-quick-login">
-                    <span class="icon">🎓</span>
-                    <span>Student</span>
-                </a>
-                <a th:href="@{/switch-role(role='HOD')}" class="btn-quick-login">
-                    <span class="icon">👨‍🏫</span>
-                    <span>HOD</span>
-                </a>
-                <a th:href="@{/switch-role(role='ADMIN')}" class="btn-quick-login">
-                    <span class="icon">⚙️</span>
-                    <span>Admin</span>
-                </a>
+<!-- Header -->
+<header class="xavier-header">
+    <div class="xavier-header-inner" style="justify-content: center; text-align: center;">
+        <div class="xavier-brand" style="justify-content: center;">
+            <svg class="auth-crest-img" viewBox="0 0 100 120" style="width: 38px; height: 46px;" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10,10 L90,10 L90,65 C90,95 50,115 50,115 C50,115 10,95 10,65 Z" fill="#ffffff" stroke="#b38728" stroke-width="4"/>
+                <path d="M14,14 L50,14 L50,55 L14,55 Z" fill="#1e3a8a"/>
+                <circle cx="32" cy="34" r="10" fill="#facc15"/>
+                <path d="M50,14 L86,14 L86,55 L50,55 Z" fill="#b91c1c"/>
+                <rect x="50" y="14" width="18" height="20" fill="#ffffff"/>
+                <rect x="68" y="34" width="18" height="21" fill="#ffffff"/>
+                <path d="M25,75 Q50,60 75,75 Q50,95 25,75" fill="#334155"/>
+            </svg>
+            <div>
+                <h1 style="font-size: 1.25rem;">ST. XAVIER'S COLLEGE, MUMBAI</h1>
+                <div class="xavier-sub-title">Campus Room & Space Allocation System</div>
             </div>
         </div>
+    </div>
+</header>
 
-        <div class="divider">or sign in with password</div>
-
-        <div th:if="${param.error}" class="xavier-alert xavier-alert-danger" style="margin-bottom: 16px; padding: 8px 12px; font-size: 0.8rem;">
-            ⚠️ Invalid email or password. Please try again.
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="auth-crest-wrap">
+            <svg class="auth-crest-img" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10,10 L90,10 L90,65 C90,95 50,115 50,115 C50,115 10,95 10,65 Z" fill="#ffffff" stroke="#741114" stroke-width="4"/>
+                <!-- Top Left Blue with Sun -->
+                <path d="M14,14 L50,14 L50,55 L14,55 Z" fill="#1e3a8a"/>
+                <circle cx="32" cy="34" r="10" fill="#d4af37"/>
+                <!-- Top Right Red with Checks -->
+                <path d="M50,14 L86,14 L86,55 L50,55 Z" fill="#741114"/>
+                <rect x="50" y="14" width="18" height="20" fill="#ffffff"/>
+                <rect x="68" y="34" width="18" height="21" fill="#ffffff"/>
+                <!-- Falcon / Eagle -->
+                <path d="M22,78 Q50,62 78,78 Q50,102 22,78" fill="#1e2430"/>
+                <text x="50" y="112" font-size="6" text-anchor="middle" font-family="serif" font-weight="bold" fill="#741114">PROVOCANS AD VOLANDUM</text>
+            </svg>
+            <h2 class="auth-college-title">St. Xavier's College</h2>
+            <div class="auth-tagline">Empowered Autonomous Institute</div>
+            <div class="auth-portal-name">Portal Authentication</div>
         </div>
-        <div th:if="${param.logout}" class="xavier-alert xavier-alert-success" style="margin-bottom: 16px; padding: 8px 12px; font-size: 0.8rem;">
-            ✓ You have been logged out successfully.
+
+        <!-- Role Pre-fill Tabs (Does NOT auto-login; requires password entry) -->
+        <div class="role-selector-pills">
+            <button type="button" class="role-pill-btn active" onclick="selectRole('STUDENT', 'student@test.com', this)">Student</button>
+            <button type="button" class="role-pill-btn" onclick="selectRole('HOD', 'hod@test.com', this)">Faculty / HOD</button>
+            <button type="button" class="role-pill-btn" onclick="selectRole('ADMIN', 'admin@test.com', this)">Administrator</button>
+        </div>
+
+        <!-- Notifications -->
+        <div th:if="${param.error}" class="xavier-alert xavier-alert-danger" style="padding: 8px 12px; font-size: 0.82rem; margin-bottom: 16px;">
+            ⚠️ Authentication failed. Please verify your email and password.
+        </div>
+        <div th:if="${param.logout}" class="xavier-alert xavier-alert-success" style="padding: 8px 12px; font-size: 0.82rem; margin-bottom: 16px;">
+            ✓ You have been logged out securely.
         </div>
 
         <form th:action="@{/login}" method="post">
             <div class="form-group">
                 <label class="form-label" for="username">College Email ID</label>
-                <input type="email" id="username" name="username" class="form-control" placeholder="e.g. student@test.com" required autocomplete="username">
+                <input type="email" id="username" name="username" class="form-control" placeholder="student@test.com" required autocomplete="username">
             </div>
 
             <div class="form-group">
                 <label class="form-label" for="password">Password</label>
-                <input type="password" id="password" name="password" class="form-control" placeholder="••••••••" required autocomplete="current-password">
+                <input type="password" id="password" name="password" class="form-control" placeholder="Enter account password" required autocomplete="current-password">
             </div>
 
-            <button type="submit" class="btn-xavier-primary" style="width: 100%; justify-content: center; margin-top: 8px;">
-                Sign In to Portal
+            <button type="submit" class="btn-xavier-primary" style="width: 100%; justify-content: center; margin-top: 10px;">
+                Sign In to Account
             </button>
         </form>
+
+        <div style="margin-top: 20px; text-align: center; font-size: 0.78rem; color: var(--text-muted);">
+            Default Test Credentials: <code>password123</code>
+        </div>
     </div>
 </div>
+
+<footer class="auth-footer">
+    © 2026 St. Xavier's College (Autonomous), 5, Mahapalika Marg, Mumbai 400 001. All rights reserved.
+</footer>
+
+<script>
+    function selectRole(role, defaultEmail, btn) {
+        document.querySelectorAll('.role-pill-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const usernameInput = document.getElementById('username');
+        usernameInput.value = defaultEmail;
+        const passwordInput = document.getElementById('password');
+        passwordInput.value = '';
+        passwordInput.focus();
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const role = urlParams.get('role');
+        if (role === 'HOD') {
+            const hodBtn = document.querySelectorAll('.role-pill-btn')[1];
+            selectRole('HOD', 'hod@test.com', hodBtn);
+        } else if (role === 'ADMIN') {
+            const adminBtn = document.querySelectorAll('.role-pill-btn')[2];
+            selectRole('ADMIN', 'admin@test.com', adminBtn);
+        } else {
+            document.getElementById('username').value = 'student@test.com';
+        }
+    });
+</script>
 
 </body>
 </html>

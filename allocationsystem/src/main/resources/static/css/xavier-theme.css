@@ -1,329 +1,376 @@
 /* ==========================================================================
-   St. Xavier's College - Unified Campus Room Allocation Design System
+   St. Xavier's College, Mumbai - Official Institutional Portal Theme
+   Heritage Jesuit Academic Aesthetic (Maroon, Cream, Warm Charcoal)
    ========================================================================== */
 
 :root {
-    --xavier-bg: #0a1124;
-    --xavier-surface: #121c35;
-    --xavier-card: #172442;
-    --xavier-card-hover: #1c2c52;
-    --xavier-border: #25365d;
-    --xavier-border-light: #334a7d;
+    /* Official Xavier's Heritage Palette */
+    --xavier-maroon: #741114;
+    --xavier-maroon-dark: #5c0b0e;
+    --xavier-maroon-light: #8e1b1f;
+    --xavier-maroon-subtle: rgba(116, 17, 20, 0.08);
+
+    --xavier-cream: #faf7f2;
+    --xavier-cream-dark: #f0ebe1;
+    --xavier-cream-card: #ffffff;
     
-    --xavier-gold: #d4af37;
-    --xavier-gold-hover: #e5c158;
-    --xavier-gold-muted: rgba(212, 175, 55, 0.15);
-    
-    --xavier-blue: #2563eb;
-    --xavier-blue-hover: #1d4ed8;
-    --xavier-blue-subtle: rgba(37, 99, 235, 0.12);
+    --xavier-gold: #b38728;
+    --xavier-gold-dark: #8c6818;
+    --xavier-gold-light: #fef8e7;
 
-    --text-primary: #f8fafc;
-    --text-secondary: #94a3b8;
-    --text-muted: #64748b;
+    --text-main: #1e2430;
+    --text-muted: #5c6475;
+    --text-light: #8a94a6;
 
-    --status-pending-bg: rgba(245, 158, 11, 0.15);
-    --status-pending-text: #fbbf24;
-    --status-pending-border: rgba(245, 158, 11, 0.3);
+    --border-warm: #e5ded2;
+    --border-subtle: #eee8de;
 
-    --status-hod-bg: rgba(6, 182, 212, 0.15);
-    --status-hod-text: #22d3ee;
-    --status-hod-border: rgba(6, 182, 212, 0.3);
+    --status-pending-bg: #fffbeb;
+    --status-pending-text: #b45309;
+    --status-pending-border: #fcd34d;
 
-    --status-approved-bg: rgba(16, 185, 129, 0.15);
-    --status-approved-text: #34d399;
-    --status-approved-border: rgba(16, 185, 129, 0.3);
+    --status-hod-bg: #eff6ff;
+    --status-hod-text: #1d4ed8;
+    --status-hod-border: #bfdbfe;
 
-    --status-rejected-bg: rgba(239, 68, 68, 0.15);
-    --status-rejected-text: #f87171;
-    --status-rejected-border: rgba(239, 68, 68, 0.3);
+    --status-approved-bg: #f0fdf4;
+    --status-approved-text: #15803d;
+    --status-approved-border: #bbf7d0;
 
-    --radius-sm: 6px;
-    --radius-md: 10px;
-    --radius-lg: 14px;
-    --shadow-sm: 0 2px 4px rgba(0,0,0,0.2);
-    --shadow-md: 0 4px 12px rgba(0,0,0,0.3);
-    --shadow-lg: 0 8px 24px rgba(0,0,0,0.4);
+    --status-rejected-bg: #fef2f2;
+    --status-rejected-text: #b91c1c;
+    --status-rejected-border: #fecaca;
+
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03);
+    --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 body {
-    background-color: var(--xavier-bg);
-    color: var(--text-primary);
+    background-color: var(--xavier-cream);
+    color: var(--text-main);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    line-height: 1.5;
 }
 
-/* ================= Top University Header ================= */
-.xavier-header {
-    background: linear-gradient(180deg, #0e1833 0%, #0b1328 100%);
-    border-bottom: 1px solid var(--xavier-border);
-    padding: 14px 28px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: var(--shadow-md);
-}
-
-.xavier-header-inner {
-    max-width: 1400px;
-    margin: 0 auto;
+/* ================= Top Utility Sub-Header ================= */
+.xavier-top-strip {
+    background-color: #f3ede2;
+    border-bottom: 1px solid #e5ded2;
+    padding: 6px 32px;
+    font-size: 0.76rem;
+    color: #4a5568;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 20px;
+}
+
+.xavier-top-strip a {
+    color: #4a5568;
+    text-decoration: none;
+    margin-right: 14px;
+    font-weight: 500;
+}
+
+.xavier-top-strip a:hover {
+    color: var(--xavier-maroon);
+    text-decoration: underline;
+}
+
+/* ================= Official St. Xavier's Maroon Banner ================= */
+.xavier-header {
+    background-color: var(--xavier-maroon);
+    color: #ffffff;
+    border-bottom: 3px solid var(--xavier-gold);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.xavier-header-inner {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
     flex-wrap: wrap;
 }
 
 .xavier-brand {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 16px;
     text-decoration: none;
+    color: #ffffff;
 }
 
-.xavier-crest {
-    width: 44px;
-    height: 44px;
-    background: linear-gradient(135deg, var(--xavier-card) 0%, #1c2b50 100%);
+.xavier-crest-emblem {
+    width: 48px;
+    height: 54px;
+    background: #ffffff;
+    border-radius: 4px 4px 24px 24px;
     border: 2px solid var(--xavier-gold);
-    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--xavier-gold);
-    font-size: 20px;
-    box-shadow: 0 0 12px rgba(212, 175, 55, 0.25);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    padding: 2px;
 }
 
 .xavier-title-group h1 {
-    font-size: 1.15rem;
+    font-family: "Georgia", "Times New Roman", serif;
+    font-size: 1.35rem;
     font-weight: 700;
-    letter-spacing: 0.04em;
-    color: var(--text-primary);
+    letter-spacing: 0.02em;
+    color: #ffffff;
+    line-height: 1.2;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
 }
 
-.xavier-gold-badge {
-    background: var(--xavier-gold-muted);
-    color: var(--xavier-gold);
-    border: 1px solid rgba(212, 175, 55, 0.4);
+.xavier-role-badge-tag {
+    background: rgba(255, 255, 255, 0.18);
+    color: #fef08a;
+    border: 1px solid rgba(254, 240, 138, 0.4);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     font-size: 0.68rem;
-    font-weight: 600;
+    font-weight: 700;
     padding: 2px 8px;
-    border-radius: 4px;
+    border-radius: 3px;
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
 
 .xavier-sub-title {
     font-size: 0.8rem;
-    color: var(--text-secondary);
+    color: #f0e6d6;
     font-weight: 400;
+    margin-top: 2px;
 }
 
-/* ================= 1-Click Role Switcher ================= */
-.xavier-role-switcher {
-    display: flex;
-    align-items: center;
-    background: rgba(18, 28, 53, 0.8);
-    border: 1px solid var(--xavier-border);
-    border-radius: 30px;
-    padding: 4px;
-    gap: 4px;
-}
-
-.role-switch-title {
-    font-size: 0.72rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    padding: 0 10px;
-    letter-spacing: 0.06em;
-}
-
-.role-chip {
-    padding: 6px 14px;
-    font-size: 0.82rem;
-    font-weight: 600;
-    border-radius: 20px;
-    text-decoration: none;
-    color: var(--text-secondary);
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.role-chip:hover {
-    color: var(--text-primary);
-    background: rgba(255, 255, 255, 0.06);
-}
-
-.role-chip.active {
-    background: linear-gradient(135deg, var(--xavier-gold) 0%, #b89222 100%);
-    color: #0b1328;
-    font-weight: 700;
-    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.35);
-}
-
-/* ================= User Badge & Actions ================= */
-.xavier-user-controls {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-}
-
-.user-identity-badge {
+/* ================= Internal Role Switcher (Requires Password) ================= */
+.xavier-switch-menu {
     display: flex;
     align-items: center;
     gap: 10px;
-    background: var(--xavier-surface);
-    border: 1px solid var(--xavier-border);
-    padding: 6px 12px;
-    border-radius: var(--radius-sm);
 }
 
-.user-avatar {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background: var(--xavier-blue);
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.75rem;
-    font-weight: 700;
+.role-switch-dropdown {
+    position: relative;
+    display: inline-block;
 }
 
-.user-meta-text {
-    display: flex;
-    flex-direction: column;
-}
-
-.user-meta-name {
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    line-height: 1.1;
-}
-
-.user-meta-role {
-    font-size: 0.7rem;
-    color: var(--xavier-gold);
-    font-weight: 500;
-}
-
-.btn-xavier-logout {
-    background: transparent;
-    border: 1px solid var(--xavier-border);
-    color: var(--text-secondary);
+.btn-switch-portal {
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #ffffff;
     padding: 6px 14px;
     font-size: 0.82rem;
-    font-weight: 500;
+    font-weight: 600;
     border-radius: var(--radius-sm);
     cursor: pointer;
-    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
     transition: all 0.2s;
 }
 
-.btn-xavier-logout:hover {
-    background: rgba(239, 68, 68, 0.15);
-    border-color: rgba(239, 68, 68, 0.4);
-    color: #f87171;
+.btn-switch-portal:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #ffffff;
 }
 
-/* ================= Layout & Containers ================= */
+.role-dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    margin-top: 6px;
+    background-color: #ffffff;
+    min-width: 220px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--border-warm);
+    border-radius: var(--radius-md);
+    z-index: 1050;
+    overflow: hidden;
+}
+
+.role-dropdown-header {
+    padding: 10px 14px 6px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.role-dropdown-item {
+    display: block;
+    padding: 10px 14px;
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 0.84rem;
+    font-weight: 500;
+    transition: background-color 0.15s;
+    border-bottom: 1px solid #f7f5f0;
+}
+
+.role-dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.role-dropdown-item:hover {
+    background-color: #fcf8f2;
+    color: var(--xavier-maroon);
+}
+
+.role-dropdown-item span.desc {
+    display: block;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    margin-top: 1px;
+}
+
+.role-switch-dropdown:hover .role-dropdown-content,
+.role-switch-dropdown:focus-within .role-dropdown-content {
+    display: block;
+}
+
+/* User controls */
+.xavier-user-badge {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-text-info {
+    text-align: right;
+    line-height: 1.2;
+}
+
+.user-name-label {
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.user-dept-label {
+    font-size: 0.72rem;
+    color: #f7e1b5;
+}
+
+.btn-header-logout {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-header-logout:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #ffffff;
+}
+
+/* ================= Main Content Container ================= */
 .xavier-container {
-    max-width: 1400px;
+    max-width: 1360px;
     width: 100%;
     margin: 0 auto;
-    padding: 28px 24px;
+    padding: 32px 24px;
     flex: 1;
 }
 
 .xavier-page-hero {
     margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-warm);
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     flex-wrap: wrap;
     gap: 16px;
 }
 
 .xavier-page-title {
-    font-size: 1.6rem;
+    font-family: "Georgia", "Times New Roman", serif;
+    font-size: 1.65rem;
     font-weight: 700;
-    color: var(--text-primary);
+    color: var(--xavier-maroon);
 }
 
 .xavier-page-desc {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
+    font-size: 0.88rem;
+    color: var(--text-muted);
     margin-top: 4px;
 }
 
-/* ================= Metric / Stat Cards ================= */
+/* ================= Realistic Metric Cards ================= */
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 16px;
     margin-bottom: 28px;
 }
 
 .stat-card {
-    background: var(--xavier-surface);
-    border: 1px solid var(--xavier-border);
+    background: var(--xavier-cream-card);
+    border: 1px solid var(--border-warm);
     border-radius: var(--radius-md);
     padding: 18px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    transition: transform 0.2s, border-color 0.2s;
+    box-shadow: var(--shadow-subtle);
+    border-left: 4px solid var(--xavier-maroon);
 }
 
-.stat-card:hover {
-    transform: translateY(-2px);
-    border-color: var(--xavier-border-light);
-}
+.stat-card.gold { border-left-color: var(--xavier-gold); }
+.stat-card.green { border-left-color: #15803d; }
+.stat-card.blue { border-left-color: #1d4ed8; }
+.stat-card.red { border-left-color: #b91c1c; }
 
 .stat-label {
-    font-size: 0.78rem;
+    font-size: 0.74rem;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-secondary);
-    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
 }
 
 .stat-value {
-    font-size: 1.8rem;
+    font-family: "Georgia", serif;
+    font-size: 1.85rem;
     font-weight: 700;
-    color: var(--text-primary);
+    color: var(--text-main);
+    margin-top: 4px;
 }
 
-.stat-value.gold { color: var(--xavier-gold); }
-.stat-value.green { color: #34d399; }
-.stat-value.amber { color: #fbbf24; }
-.stat-value.cyan { color: #22d3ee; }
-.stat-value.red { color: #f87171; }
-
-/* ================= Content Cards ================= */
+/* ================= Institutional Cards ================= */
 .xavier-card {
-    background: var(--xavier-surface);
-    border: 1px solid var(--xavier-border);
+    background: var(--xavier-cream-card);
+    border: 1px solid var(--border-warm);
     border-radius: var(--radius-md);
     padding: 24px;
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow-card);
     margin-bottom: 24px;
 }
 
@@ -332,20 +379,18 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-    padding-bottom: 14px;
-    border-bottom: 1px solid var(--xavier-border);
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-subtle);
 }
 
 .xavier-card-title {
+    font-family: "Georgia", serif;
     font-size: 1.15rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    font-weight: 700;
+    color: var(--xavier-maroon);
 }
 
-/* ================= Forms & Inputs ================= */
+/* ================= Form Controls ================= */
 .form-group {
     margin-bottom: 16px;
 }
@@ -354,105 +399,65 @@ body {
     display: block;
     font-size: 0.82rem;
     font-weight: 600;
-    color: var(--text-secondary);
+    color: var(--text-main);
     margin-bottom: 6px;
 }
 
 .form-control, .form-select {
     width: 100%;
-    background: var(--xavier-card);
-    border: 1px solid var(--xavier-border);
-    color: var(--text-primary);
-    padding: 10px 14px;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    color: var(--text-main);
+    padding: 10px 12px;
     border-radius: var(--radius-sm);
     font-size: 0.9rem;
     outline: none;
-    transition: all 0.2s;
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .form-control:focus, .form-select:focus {
-    border-color: var(--xavier-gold);
-    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+    border-color: var(--xavier-maroon);
+    box-shadow: 0 0 0 3px rgba(116, 17, 20, 0.12);
 }
 
 .form-select optgroup {
-    background: #0d152b;
-    color: var(--xavier-gold);
     font-weight: 700;
-}
-
-.form-select option {
-    background: var(--xavier-card);
-    color: var(--text-primary);
-    font-weight: 400;
-    padding: 8px;
+    color: var(--xavier-maroon);
+    background: #fdfbf7;
 }
 
 /* ================= Buttons ================= */
 .btn-xavier-primary {
-    background: linear-gradient(135deg, var(--xavier-gold) 0%, #b89222 100%);
-    color: #0b1328;
-    font-weight: 700;
+    background-color: var(--xavier-maroon);
+    color: #ffffff;
+    font-weight: 600;
     border: none;
     padding: 10px 20px;
     border-radius: var(--radius-sm);
     cursor: pointer;
     font-size: 0.9rem;
-    transition: all 0.2s;
+    transition: background-color 0.2s, transform 0.1s;
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    box-shadow: 0 2px 6px rgba(212, 175, 55, 0.25);
 }
 
 .btn-xavier-primary:hover {
-    background: linear-gradient(135deg, var(--xavier-gold-hover) 0%, #c9a02a 100%);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 10px rgba(212, 175, 55, 0.35);
+    background-color: var(--xavier-maroon-dark);
 }
 
-.btn-xavier-approve {
-    background: rgba(16, 185, 129, 0.18);
-    border: 1px solid rgba(16, 185, 129, 0.4);
-    color: #34d399;
-    padding: 6px 14px;
+.btn-xavier-primary:active {
+    transform: translateY(1px);
+}
+
+.btn-xavier-outline {
+    background: transparent;
+    border: 1px solid #cbd5e1;
+    color: var(--text-main);
+    padding: 8px 16px;
     border-radius: var(--radius-sm);
-    font-size: 0.82rem;
+    font-size: 0.84rem;
     font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.btn-xavier-approve:hover {
-    background: #10b981;
-    color: #fff;
-}
-
-.btn-xavier-reject {
-    background: rgba(239, 68, 68, 0.18);
-    border: 1px solid rgba(239, 68, 68, 0.4);
-    color: #f87171;
-    padding: 6px 14px;
-    border-radius: var(--radius-sm);
-    font-size: 0.82rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.btn-xavier-reject:hover {
-    background: #ef4444;
-    color: #fff;
-}
-
-.btn-refresh-pill {
-    background: var(--xavier-surface);
-    border: 1px solid var(--xavier-border);
-    color: var(--text-secondary);
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 500;
     cursor: pointer;
     text-decoration: none;
     display: inline-flex;
@@ -461,9 +466,42 @@ body {
     transition: all 0.2s;
 }
 
-.btn-refresh-pill:hover {
-    border-color: var(--xavier-gold);
-    color: var(--text-primary);
+.btn-xavier-outline:hover {
+    border-color: var(--xavier-maroon);
+    color: var(--xavier-maroon);
+    background: var(--xavier-maroon-subtle);
+}
+
+.btn-xavier-approve {
+    background-color: #15803d;
+    color: #ffffff;
+    border: none;
+    padding: 6px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s;
+}
+
+.btn-xavier-approve:hover {
+    background-color: #166534;
+}
+
+.btn-xavier-reject {
+    background-color: #b91c1c;
+    color: #ffffff;
+    border: none;
+    padding: 6px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s;
+}
+
+.btn-xavier-reject:hover {
+    background-color: #991b1b;
 }
 
 /* ================= Tables ================= */
@@ -478,39 +516,35 @@ body {
 }
 
 .xavier-table th {
-    background: var(--xavier-card);
-    color: var(--text-secondary);
+    background-color: #f7f4ec;
+    color: #334155;
     text-align: left;
-    padding: 12px 16px;
-    font-weight: 600;
-    font-size: 0.78rem;
+    padding: 12px 14px;
+    font-weight: 700;
+    font-size: 0.76rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    border-bottom: 2px solid var(--xavier-border);
+    border-bottom: 2px solid var(--border-warm);
 }
 
 .xavier-table td {
-    padding: 14px 16px;
-    border-bottom: 1px solid var(--xavier-border);
-    color: var(--text-primary);
+    padding: 14px 14px;
+    border-bottom: 1px solid var(--border-subtle);
+    color: var(--text-main);
     vertical-align: middle;
 }
 
-.xavier-table tbody tr {
-    transition: background-color 0.15s;
-}
-
 .xavier-table tbody tr:hover {
-    background-color: var(--xavier-card-hover);
+    background-color: #fdfbf7;
 }
 
 /* ================= Status Badges ================= */
 .status-pill {
     display: inline-block;
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-size: 0.74rem;
-    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.72rem;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.04em;
 }
@@ -542,32 +576,32 @@ body {
 /* ================= Tab Filters ================= */
 .xavier-tabs {
     display: flex;
-    gap: 8px;
-    margin-bottom: 20px;
+    gap: 6px;
+    margin-bottom: 18px;
     flex-wrap: wrap;
 }
 
 .xavier-tab-btn {
-    background: var(--xavier-surface);
-    border: 1px solid var(--xavier-border);
-    color: var(--text-secondary);
-    padding: 8px 16px;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    color: var(--text-muted);
+    padding: 7px 14px;
     border-radius: var(--radius-sm);
-    font-size: 0.85rem;
+    font-size: 0.84rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.15s;
 }
 
 .xavier-tab-btn:hover {
-    color: var(--text-primary);
-    border-color: var(--xavier-border-light);
+    border-color: var(--xavier-maroon);
+    color: var(--xavier-maroon);
 }
 
 .xavier-tab-btn.active {
-    background: var(--xavier-gold-muted);
-    border-color: var(--xavier-gold);
-    color: var(--xavier-gold);
+    background-color: var(--xavier-maroon);
+    border-color: var(--xavier-maroon);
+    color: #ffffff;
 }
 
 /* ================= Alerts ================= */
@@ -576,31 +610,23 @@ body {
     border-radius: var(--radius-sm);
     margin-bottom: 20px;
     font-size: 0.88rem;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    font-weight: 500;
 }
 
 .xavier-alert-success {
-    background: rgba(16, 185, 129, 0.12);
-    border: 1px solid rgba(16, 185, 129, 0.3);
-    color: #34d399;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    color: #15803d;
 }
 
 .xavier-alert-danger {
-    background: rgba(239, 68, 68, 0.12);
-    border: 1px solid rgba(239, 68, 68, 0.3);
-    color: #f87171;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #b91c1c;
 }
 
 .empty-state {
     text-align: center;
-    padding: 48px 24px;
+    padding: 40px 20px;
     color: var(--text-muted);
-}
-
-.empty-state-icon {
-    font-size: 3rem;
-    margin-bottom: 12px;
-    opacity: 0.6;
 }

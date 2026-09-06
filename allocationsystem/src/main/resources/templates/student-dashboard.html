@@ -6,9 +6,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>Student Portal | St. Xavier's College Room Allocation</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Student Portal | St. Xavier's College (Autonomous), Mumbai</title>
     <link rel="stylesheet" th:href="@{/css/xavier-theme.css}">
     <style>
         .layout-grid {
@@ -31,37 +29,70 @@
 </head>
 <body>
 
-<!-- Top St. Xavier's College Header -->
+<!-- Top Institutional Strip -->
+<div class="xavier-top-strip">
+    <div>
+        <a href="https://xaviers.edu" target="_blank">xaviers.edu</a>
+        <a href="#">NIRF</a>
+        <a href="#">IQAC</a>
+    </div>
+    <div style="font-weight: 600; letter-spacing: 0.04em;">
+        ESTD. 1869 • EMPOWERED AUTONOMOUS INSTITUTE
+    </div>
+</div>
+
+<!-- Header -->
 <header class="xavier-header">
     <div class="xavier-header-inner">
         <div class="xavier-brand">
-            <div class="xavier-crest">🏛️</div>
+            <svg class="xavier-crest-emblem" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10,10 L90,10 L90,65 C90,95 50,115 50,115 C50,115 10,95 10,65 Z" fill="#ffffff" stroke="#b38728" stroke-width="4"/>
+                <path d="M14,14 L50,14 L50,55 L14,55 Z" fill="#1e3a8a"/>
+                <circle cx="32" cy="34" r="10" fill="#d4af37"/>
+                <path d="M50,14 L86,14 L86,55 L50,55 Z" fill="#741114"/>
+                <rect x="50" y="14" width="18" height="20" fill="#ffffff"/>
+                <rect x="68" y="34" width="18" height="21" fill="#ffffff"/>
+                <path d="M22,78 Q50,62 78,78 Q50,102 22,78" fill="#1e2430"/>
+            </svg>
             <div class="xavier-title-group">
-                <h1>ST. XAVIER'S COLLEGE <span class="xavier-gold-badge">STUDENT PORTAL</span></h1>
-                <div class="xavier-sub-title">Campus Space & Room Allocation System</div>
+                <h1>ST. XAVIER'S COLLEGE, MUMBAI <span class="xavier-role-badge-tag">STUDENT PORTAL</span></h1>
+                <div class="xavier-sub-title">Campus Room & Space Allocation System</div>
             </div>
         </div>
 
-        <!-- 1-Click Role Switcher -->
-        <div class="xavier-role-switcher">
-            <span class="role-switch-title">Switch:</span>
-            <a th:href="@{/switch-role(role='STUDENT')}" class="role-chip active">🎓 Student</a>
-            <a th:href="@{/switch-role(role='HOD')}" class="role-chip">👨‍🏫 HOD</a>
-            <a th:href="@{/switch-role(role='ADMIN')}" class="role-chip">⚙️ Admin</a>
-        </div>
-
-        <!-- User Controls -->
-        <div class="xavier-user-controls">
-            <div class="user-identity-badge">
-                <div class="user-avatar" th:text="${student != null ? #strings.substring(student.name, 0, 1) : 'S'}">S</div>
-                <div class="user-meta-text">
-                    <span class="user-meta-name" th:text="${student != null ? student.name : 'Student User'}">Student Name</span>
-                    <span class="user-meta-role" th:text="${student != null && student.department != null ? student.department : 'Undergraduate'}">Department</span>
+        <!-- Role Switcher & User Controls -->
+        <div class="xavier-switch-menu">
+            <div class="role-switch-dropdown">
+                <button type="button" class="btn-switch-portal">
+                    <span>Switch Portal</span>
+                    <span style="font-size: 0.65rem;">▼</span>
+                </button>
+                <div class="role-dropdown-content">
+                    <div class="role-dropdown-header">Switch Portal (Requires Password)</div>
+                    <a th:href="@{/switch-role(role='STUDENT')}" class="role-dropdown-item">
+                        🎓 Student Portal
+                        <span class="desc">student@test.com</span>
+                    </a>
+                    <a th:href="@{/switch-role(role='HOD')}" class="role-dropdown-item">
+                        👨‍🏫 HOD Review Portal
+                        <span class="desc">hod@test.com</span>
+                    </a>
+                    <a th:href="@{/switch-role(role='ADMIN')}" class="role-dropdown-item">
+                        ⚙️ Central Admin Console
+                        <span class="desc">admin@test.com</span>
+                    </a>
                 </div>
             </div>
-            <form th:action="@{/logout}" method="post" style="display:inline;">
-                <button type="submit" class="btn-xavier-logout">Log Out</button>
-            </form>
+
+            <div class="xavier-user-badge">
+                <div class="user-text-info">
+                    <div class="user-name-label" th:text="${student != null ? student.name : 'Student User'}">Student Name</div>
+                    <div class="user-dept-label" th:text="${student != null && student.department != null ? student.department : 'Undergraduate'}">Department</div>
+                </div>
+                <form th:action="@{/logout}" method="post" style="display:inline;">
+                    <button type="submit" class="btn-header-logout">Logout</button>
+                </form>
+            </div>
         </div>
     </div>
 </header>
@@ -70,39 +101,37 @@
     <!-- Page Hero -->
     <div class="xavier-page-hero">
         <div>
-            <h2 class="xavier-page-title">Room Reservation Portal</h2>
-            <p class="xavier-page-desc">Reserve lecture halls, science labs, and seminar rooms for academic and extracurricular activities.</p>
+            <h2 class="xavier-page-title">Room & Venue Reservation</h2>
+            <p class="xavier-page-desc">Reserve lecture halls, science laboratories, and seminar halls across campus for academic and club events.</p>
         </div>
         <div style="display: flex; gap: 10px;">
-            <a href="/schedule" class="btn-refresh-pill">
-                <span>📅</span> View Campus Schedule
+            <a href="/schedule" class="btn-xavier-outline">
+                View Campus Schedule
             </a>
-            <a th:href="@{/student/dashboard}" class="btn-refresh-pill">
-                <span>🔄</span> Refresh Status
+            <a th:href="@{/student/dashboard}" class="btn-xavier-outline">
+                Refresh Status
             </a>
         </div>
     </div>
 
     <!-- Alert Notifications -->
     <div th:if="${param.error}" class="xavier-alert xavier-alert-danger">
-        <span th:if="${param.error[0] == 'conflict'}">⚠️ Scheduling Conflict: That venue is already booked for the selected date and time range. Please choose another slot or room.</span>
+        <span th:if="${param.error[0] == 'conflict'}">⚠️ Scheduling Conflict: That room is already booked for the selected date and time. Please choose another venue or time.</span>
         <span th:if="${param.error[0] == 'invalid_time'}">⚠️ Invalid Time: End time must be later than start time.</span>
-        <span th:if="${param.error[0] == 'past_date'}">⚠️ Invalid Date: Bookings cannot be submitted for past dates.</span>
-        <span th:if="${param.error[0] != 'conflict' and param.error[0] != 'invalid_time' and param.error[0] != 'past_date'}">⚠️ Unable to process request. Please check inputs and try again.</span>
+        <span th:if="${param.error[0] == 'past_date'}">⚠️ Invalid Date: Reservations cannot be scheduled in the past.</span>
+        <span th:if="${param.error[0] != 'conflict' and param.error[0] != 'invalid_time' and param.error[0] != 'past_date'}">⚠️ Unable to process request. Please review form inputs.</span>
     </div>
 
     <div th:if="${param.success}" class="xavier-alert xavier-alert-success">
-        <span th:if="${param.success[0] == 'created'}">✓ Your booking request has been submitted successfully! It is now pending departmental HOD review.</span>
+        <span th:if="${param.success[0] == 'created'}">✓ Your reservation request has been submitted. It is now awaiting HOD departmental review.</span>
     </div>
 
-    <!-- Main Two-Column Layout -->
+    <!-- Main Layout -->
     <div class="layout-grid">
         <!-- Room Request Form -->
         <div class="xavier-card">
             <div class="xavier-card-header">
-                <div class="xavier-card-title">
-                    <span>📝</span> Request a Venue
-                </div>
+                <h3 class="xavier-card-title">Book a Campus Venue</h3>
             </div>
 
             <form th:action="@{/student/bookings}" method="post">
@@ -138,7 +167,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label" for="date">Booking Date</label>
+                    <label class="form-label" for="date">Reservation Date</label>
                     <input type="date" id="date" name="date" class="form-control" required>
                 </div>
 
@@ -170,10 +199,6 @@
                             <option value="17:00">05:00 PM</option>
                             <option value="17:30">05:30 PM</option>
                             <option value="18:00">06:00 PM</option>
-                            <option value="18:30">06:30 PM</option>
-                            <option value="19:00">07:00 PM</option>
-                            <option value="19:30">07:30 PM</option>
-                            <option value="20:00">08:00 PM</option>
                         </select>
                     </div>
 
@@ -203,23 +228,17 @@
                             <option value="17:00">05:00 PM</option>
                             <option value="17:30">05:30 PM</option>
                             <option value="18:00">06:00 PM</option>
-                            <option value="18:30">06:30 PM</option>
-                            <option value="19:00">07:00 PM</option>
-                            <option value="19:30">07:30 PM</option>
-                            <option value="20:00">08:00 PM</option>
-                            <option value="20:30">08:30 PM</option>
-                            <option value="21:00">09:00 PM</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="form-label" for="purpose">Purpose of Reservation</label>
-                    <textarea id="purpose" name="purpose" class="form-control" rows="3" placeholder="e.g. Computer Science Club Hackathon, Guest Lecture, Study Session..." required></textarea>
+                    <textarea id="purpose" name="purpose" class="form-control" rows="3" placeholder="State event name, club, or academic activity details..." required></textarea>
                 </div>
 
                 <button type="submit" class="btn-xavier-primary" style="width: 100%; justify-content: center;">
-                    Submit Booking Request
+                    Submit Reservation Request
                 </button>
             </form>
         </div>
@@ -227,16 +246,12 @@
         <!-- My Bookings List -->
         <div class="xavier-card">
             <div class="xavier-card-header">
-                <div class="xavier-card-title">
-                    <span>🕒</span> My Booking History
-                </div>
+                <h3 class="xavier-card-title">My Reservation History</h3>
                 <span class="status-pill status-hod" th:text="${myBookings != null ? myBookings.size() : 0} + ' TOTAL'">0 TOTAL</span>
             </div>
 
             <div th:if="${myBookings == null or #lists.isEmpty(myBookings)}" class="empty-state">
-                <div class="empty-state-icon">📅</div>
-                <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 6px;">No Bookings Yet</h3>
-                <p style="font-size: 0.88rem;">Use the form on the left to submit your first room reservation.</p>
+                <p>No reservations requested yet. Submit a request using the form on the left.</p>
             </div>
 
             <div th:if="${myBookings != null and !#lists.isEmpty(myBookings)}" class="table-responsive">
@@ -253,12 +268,12 @@
                     <tbody>
                     <tr th:each="booking : ${myBookings}">
                         <td>
-                            <div style="font-weight: 600;" th:text="${booking.room.name}">Room Name</div>
-                            <div style="font-size: 0.75rem; color: var(--text-muted);" th:text="${booking.room.building}">Building</div>
+                            <div style="font-weight: 600;" th:text="${booking.room.name}">Room</div>
+                            <div style="font-size: 0.76rem; color: var(--text-muted);" th:text="${booking.room.building}">Building</div>
                         </td>
-                        <td style="font-weight: 600; color: var(--xavier-gold);" th:text="${booking.date}">Date</td>
+                        <td style="font-weight: 600;" th:text="${booking.date}">Date</td>
                         <td style="font-size: 0.82rem;" th:text="${booking.startTime + ' - ' + booking.endTime}">Time</td>
-                        <td style="max-width: 180px;" th:text="${booking.purpose}">Purpose</td>
+                        <td style="max-width: 180px; font-size: 0.84rem;" th:text="${booking.purpose}">Purpose</td>
                         <td style="text-align: right;">
                             <span th:if="${#strings.toString(booking.status) == 'PENDING'}" class="status-pill status-pending">Pending HOD</span>
                             <span th:if="${#strings.toString(booking.status) == 'HOD_APPROVED'}" class="status-pill status-hod">HOD Approved</span>
