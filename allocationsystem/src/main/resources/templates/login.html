@@ -7,6 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Sign In | St. Xavier's College (Autonomous), Mumbai</title>
+    <link rel="icon" type="image/png" th:href="@{/images/xavier-logo.png}">
     <link rel="stylesheet" th:href="@{/css/xavier-theme.css}">
     <style>
         body {
@@ -41,10 +42,12 @@
         }
 
         .auth-crest-img {
-            width: 64px;
-            height: 72px;
+            width: 80px;
+            height: 98px;
             margin: 0 auto 12px;
             display: block;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.12));
         }
 
         .auth-college-title {
@@ -132,15 +135,7 @@
 <header class="xavier-header">
     <div class="xavier-header-inner" style="justify-content: center; text-align: center;">
         <div class="xavier-brand" style="justify-content: center;">
-            <svg class="auth-crest-img" viewBox="0 0 100 120" style="width: 38px; height: 46px;" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10,10 L90,10 L90,65 C90,95 50,115 50,115 C50,115 10,95 10,65 Z" fill="#ffffff" stroke="#b38728" stroke-width="4"/>
-                <path d="M14,14 L50,14 L50,55 L14,55 Z" fill="#1e3a8a"/>
-                <circle cx="32" cy="34" r="10" fill="#facc15"/>
-                <path d="M50,14 L86,14 L86,55 L50,55 Z" fill="#b91c1c"/>
-                <rect x="50" y="14" width="18" height="20" fill="#ffffff"/>
-                <rect x="68" y="34" width="18" height="21" fill="#ffffff"/>
-                <path d="M25,75 Q50,60 75,75 Q50,95 25,75" fill="#334155"/>
-            </svg>
+            <img th:src="@{/images/xavier-logo.png}" alt="St. Xavier's College Crest" class="xavier-crest-emblem" style="width: 40px; height: 50px;">
             <div>
                 <h1 style="font-size: 1.25rem;">ST. XAVIER'S COLLEGE, MUMBAI</h1>
                 <div class="xavier-sub-title">Campus Room & Space Allocation System</div>
@@ -152,19 +147,7 @@
 <div class="auth-container">
     <div class="auth-card">
         <div class="auth-crest-wrap">
-            <svg class="auth-crest-img" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10,10 L90,10 L90,65 C90,95 50,115 50,115 C50,115 10,95 10,65 Z" fill="#ffffff" stroke="#741114" stroke-width="4"/>
-                <!-- Top Left Blue with Sun -->
-                <path d="M14,14 L50,14 L50,55 L14,55 Z" fill="#1e3a8a"/>
-                <circle cx="32" cy="34" r="10" fill="#d4af37"/>
-                <!-- Top Right Red with Checks -->
-                <path d="M50,14 L86,14 L86,55 L50,55 Z" fill="#741114"/>
-                <rect x="50" y="14" width="18" height="20" fill="#ffffff"/>
-                <rect x="68" y="34" width="18" height="21" fill="#ffffff"/>
-                <!-- Falcon / Eagle -->
-                <path d="M22,78 Q50,62 78,78 Q50,102 22,78" fill="#1e2430"/>
-                <text x="50" y="112" font-size="6" text-anchor="middle" font-family="serif" font-weight="bold" fill="#741114">PROVOCANS AD VOLANDUM</text>
-            </svg>
+            <img th:src="@{/images/xavier-logo.png}" alt="St. Xavier's College Crest" class="auth-crest-img">
             <h2 class="auth-college-title">St. Xavier's College</h2>
             <div class="auth-tagline">Empowered Autonomous Institute</div>
             <div class="auth-portal-name">Portal Authentication</div>
